@@ -1,5 +1,3 @@
-# Rental Cars
-
 ## Requisitions
 
 * Ruby version: 2.6.3
