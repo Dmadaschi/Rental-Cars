@@ -20,6 +20,25 @@ class ManufacturersController < ApplicationController
     end
   end
 
+  def edit
+    @manufacturer = Manufacturer.find(params.require(:id))
+  end
+
+  def update
+    @manufacturer = Manufacturer.new(manufacturer_params)
+    if @manufacturer.save
+      redirect_to @manufacturer
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    manufacturer = Manufacturer.find(params.require(:id))
+    manufacturer.destroy!
+    redirect_to manufacturers_path
+  end
+
   private
 
   def manufacturer_params
