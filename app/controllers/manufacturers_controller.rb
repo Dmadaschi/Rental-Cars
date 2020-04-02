@@ -12,6 +12,6 @@ class ManufacturersController < ApplicationController
     manufacturer = Manufacturer.new
     manufacturer.name = params[:Nome]
     manufacturer.save!
-    redirect_to manufacturer_path(manufacturer.id)
+    redirect_to manufacturer_path manufacturer.id 
   end
 end
