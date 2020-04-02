@@ -1,3 +1,4 @@
 <%= form_with model: @manufacturer do |form| %>
-  <%= form.text_field :name, value: 'Nome'%> 
+  <%= form.text_field :name, name: 'Nome'%>
+  <%= form.submit 'Enviar'%> 
 <%end%>
