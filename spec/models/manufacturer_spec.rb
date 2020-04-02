@@ -7,7 +7,7 @@ describe Manufacturer, type: :model do
 
       manufacturer.valid?
 
-      expect(manufacturer.errors[:name]).to include('Nome não pode '\
+      expect(manufacturer.errors[:name]).to include('não pode '\
                                                     'ficar em branco')
     end
 
@@ -17,7 +17,7 @@ describe Manufacturer, type: :model do
 
       manufacturer.valid?
 
-      expect(manufacturer.errors[:name]).to include('Nome deve ser único')
+      expect(manufacturer.errors[:name]).to include('deve ser único')
     end
   end
 end

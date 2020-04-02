@@ -1,8 +1,8 @@
-<%if @manufacturers.present?%>
-  <%= render @manufacturers %>
-<%else%>
-  <h1>'Nenhum fabricante cadastrado'</h1>
-<%end%>
+<% if @manufacturers.blank? %>
+  <h1>Nenhum fabricante cadastrado</h1>
+<% end %>
+
+<%= render @manufacturers %>
 
 <%=link_to 'Registrar novo fabricante', new_manufacturer_path%>
 
