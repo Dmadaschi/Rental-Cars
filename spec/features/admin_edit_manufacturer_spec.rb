@@ -12,6 +12,7 @@ feature 'Admin edits manufacturer' do
     click_on 'Enviar'
 
     expect(page).to have_content('Honda')
+    expect(Manufacturer.count).to eq(1)
   end
 
   scenario 'successfully' do

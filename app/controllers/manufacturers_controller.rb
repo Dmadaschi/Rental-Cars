@@ -25,8 +25,9 @@ class ManufacturersController < ApplicationController
   end
 
   def update
-    @manufacturer = Manufacturer.new(manufacturer_params)
-    if @manufacturer.save
+    @manufacturer = Manufacturer.find(params.require(:id))
+    
+    if @manufacturer.update(manufacturer_params)
       redirect_to @manufacturer
     else
       render :edit
