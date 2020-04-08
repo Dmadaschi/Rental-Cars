@@ -26,7 +26,7 @@ class ManufacturersController < ApplicationController
 
   def update
     @manufacturer = Manufacturer.find(params.require(:id))
-    
+
     if @manufacturer.update(manufacturer_params)
       redirect_to @manufacturer
     else

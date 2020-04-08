@@ -39,6 +39,6 @@ feature 'Admin edits manufacturer' do
     fill_in 'Nome', with: 'Honda'
     click_on 'Enviar'
 
-    expect(page).to have_content('Nome deve ser único')
+    expect(page).to have_content('Nome já está em uso')
   end
 end

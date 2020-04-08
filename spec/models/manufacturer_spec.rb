@@ -17,7 +17,7 @@ describe Manufacturer, type: :model do
 
       manufacturer.valid?
 
-      expect(manufacturer.errors[:name]).to include('deve ser único')
+      expect(manufacturer.errors[:name]).to include('já está em uso')
     end
   end
 end
