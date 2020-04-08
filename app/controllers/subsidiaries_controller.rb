@@ -1,5 +1,6 @@
 class SubsidiariesController < ApplicationController
-  def indexe
+  before_action :set_subsidiary, only: [:show]
+  def index
     @subsidiaries = Subsidiary.all
   end
 
@@ -17,14 +18,15 @@ class SubsidiariesController < ApplicationController
   end
 
   def show
-    @subsidiary = Subsidiary.find(params[:id])
   end
 
   private
 
+  def set_subsidiary
+    @subsidiary = Subsidiary.find(params.require(:id))
+  end
+
   def subsidiary_params
     params.require(:subsidiary).permit(:name, :cnpj, :address)
   end
-  
-  
 end
