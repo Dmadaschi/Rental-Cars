@@ -9,16 +9,13 @@ class SubsidiariesController < ApplicationController
   end
 
   def create
-    @subsidiary = Subsidiary.new(subsidiary_params)
-    if @subsidiary.save
-      redirect_to @subsidiary
-    else
-      render :new
-    end
+    @subsidiary = Subsidiary.new(subsidiary_params)   
+    return redirect_to @subsidiary if @subsidiary.save
+
+    render :new
   end
 
-  def show
-  end
+  def show; end
 
   private
 
