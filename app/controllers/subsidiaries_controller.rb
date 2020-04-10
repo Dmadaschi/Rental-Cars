@@ -1,5 +1,5 @@
 class SubsidiariesController < ApplicationController
-  before_action :set_subsidiary, only: [:show]
+  before_action :set_subsidiary, only: %i[show edit update destroy]
   def index
     @subsidiaries = Subsidiary.all
   end
@@ -16,6 +16,19 @@ class SubsidiariesController < ApplicationController
   end
 
   def show; end
+
+  def edit; end
+
+  def update
+    return redirect_to @subsidiary if @subsidiary
+                                      .update(subsidiary_params)
+    render :edit
+  end
+
+  def destroy
+    @subsidiary.delete
+    redirect_to subsidiaries_path
+  end
 
   private
 

@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Visitor view subsidiarys' do
   scenario 'successfully' do
     Subsidiary.create!(name: 'Sede',
-                       cnpj: '01.290.370/0001-73', 
+                       cnpj: '01.290.370/0001-73',
                        address: 'endereço teste')
 
     Subsidiary.create!(name: 'Paulista', 

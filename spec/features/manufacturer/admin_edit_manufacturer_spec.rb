@@ -15,7 +15,7 @@ feature 'Admin edits manufacturer' do
     expect(Manufacturer.count).to eq(1)
   end
 
-  scenario 'successfully' do
+  scenario 'with blank name' do
     Manufacturer.create(name: 'Fiat')
 
     visit root_path
@@ -28,7 +28,7 @@ feature 'Admin edits manufacturer' do
     expect(page).to have_content('Nome não pode ficar em branco')
   end
 
-  scenario 'successfully' do
+  scenario 'with invalid name' do
     Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Honda')
 

@@ -1,6 +1,7 @@
 <%if @subsidiaries.blank?%>
 <h1>Nenhuma filial cadastrada</h1>
 <%end%>
+
 <%=render @subsidiaries%>
 
 <h1><%=link_to 'Registrar nova filial', new_subsidiary_path%></h1>
