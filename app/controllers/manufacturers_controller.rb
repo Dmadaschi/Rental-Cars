@@ -1,11 +1,13 @@
 class ManufacturersController < ApplicationController
   before_action :set_manufacturer, only: %i[show edit update destroy]
-  
+
+  def edit; end
+
+  def show; end
+
   def index
     @manufacturers = Manufacturer.all
   end
-
-  def show; end
 
   def new
     @manufacturer = Manufacturer.new
@@ -18,12 +20,10 @@ class ManufacturersController < ApplicationController
     render :new
   end
 
-  def edit; end
-
   def update   
     return redirect_to @manufacturer if @manufacturer
                                         .update(manufacturer_params)
-
+    
     render :edit
   end
 
