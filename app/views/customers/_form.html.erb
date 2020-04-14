@@ -1,0 +1,19 @@
+<%if  @customer.errors.present?%>
+  <ul>
+    <% @customer.errors.full_messages.each do |message| %>
+      <li><%=message%></li>
+    <%end%>
+  </ul>
+<%end%>
+
+<%= form_with model: @customer do |f|%>
+  <ul>
+  <li><%= f.label :name %>
+  <%= f.text_field :name %></li>
+  <li><%= f.label :document %>
+  <%= f.text_field :document %></li>
+  <li><%= f.label :email %>
+  <%= f.text_field :email %></li>
+  <li><%= f.submit 'Enviar'%></li>
+  </ul>
+<%end%>

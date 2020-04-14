@@ -1,0 +1,7 @@
+<% if @customers.blank? %>
+  <h1>Nenhum cliente cadastrado</h1>
+<% end %>
+
+<h2><%= render @customers %></h2>
+
+<h2><%=link_to 'Registrar novo cliente', new_customer_path%></h2>
