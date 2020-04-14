@@ -3,6 +3,10 @@ class CarCategoriesController < ApplicationController
 
   def show; end
 
+  def index
+    @car_categories = CarCategory.all
+  end
+
   def new
     @car_category = CarCategory.new
   end

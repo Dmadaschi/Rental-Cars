@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'Admin register car categories' do
   scenario 'successfully' do
     visit root_path
+    click_on 'Categorias de carro'
     click_on 'Registrar nova categoria de carro'
 
     fill_in 'Nome', with: 'A'
@@ -16,12 +17,14 @@ feature 'Admin register car categories' do
     expect(page).to have_content('Seguro: R$ 20,00')
     expect(page).to have_content('Seguro para terceiros: R$ 20,00')
   end
+  
   scenario 'With already existant name' do
     CarCategory.create!(name: 'A',
                         daily_rate: '50', 
                         car_insurance: '20',
                         third_part_insurance: '20')
     visit root_path
+    click_on 'Categorias de carro'
     click_on 'Registrar nova categoria de carro'
 
     fill_in 'Nome', with: 'A'
@@ -32,8 +35,10 @@ feature 'Admin register car categories' do
     
     expect(page).to have_content('Nome já está em uso')
   end
-  scenario 'With blanc name' do
+
+  scenario 'With blank name' do
     visit root_path
+    click_on 'Categorias de carro'
     click_on 'Registrar nova categoria de carro'
 
     fill_in 'Nome', with: ''
@@ -44,8 +49,10 @@ feature 'Admin register car categories' do
     
     expect(page).to have_content('Nome não pode ficar em branco')
   end
-  scenario 'With blanc name' do
+
+  scenario 'With blank name' do
     visit root_path
+    click_on 'Categorias de carro'
     click_on 'Registrar nova categoria de carro'
 
     fill_in 'Nome', with: ''
@@ -56,8 +63,10 @@ feature 'Admin register car categories' do
     
     expect(page).to have_content('Nome não pode ficar em branco')
   end
-  scenario 'With blanc daily_rate' do
+
+  scenario 'With blank daily_rate' do
     visit root_path
+    click_on 'Categorias de carro'
     click_on 'Registrar nova categoria de carro'
 
     fill_in 'Nome', with: 'a'
@@ -68,8 +77,10 @@ feature 'Admin register car categories' do
     
     expect(page).to have_content('Diária não pode ficar em branco')
   end
-  scenario 'With blanc car_insurance' do
+
+  scenario 'With blank car_insurance' do
     visit root_path
+    click_on 'Categorias de carro'
     click_on 'Registrar nova categoria de carro'
 
     fill_in 'Nome', with: 'a'
@@ -80,8 +91,10 @@ feature 'Admin register car categories' do
     
     expect(page).to have_content('Seguro não pode ficar em branco')
   end
-  scenario 'With blanc third_part_insurance' do
+
+  scenario 'With blank third_part_insurance' do
     visit root_path
+    click_on 'Categorias de carro'
     click_on 'Registrar nova categoria de carro'
 
     fill_in 'Nome', with: 'a'
@@ -92,8 +105,10 @@ feature 'Admin register car categories' do
     
     expect(page).to have_content('Seguro para terceiros não pode ficar em branco')
   end
+
   scenario 'With 0 values' do
     visit root_path
+    click_on 'Categorias de carro'
     click_on 'Registrar nova categoria de carro'
 
     fill_in 'Nome', with: 'a'
