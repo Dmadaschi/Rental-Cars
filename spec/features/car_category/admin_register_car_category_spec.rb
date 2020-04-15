@@ -50,20 +50,6 @@ feature 'Admin register car categories' do
     expect(page).to have_content('Nome não pode ficar em branco')
   end
 
-  scenario 'With blank name' do
-    visit root_path
-    click_on 'Categorias de carro'
-    click_on 'Registrar nova categoria de carro'
-
-    fill_in 'Nome', with: ''
-    fill_in 'Diária', with: '50'
-    fill_in 'Seguro', with: '20'
-    fill_in 'Seguro para terceiros', with: '20'
-    click_on 'Enviar'
-    
-    expect(page).to have_content('Nome não pode ficar em branco')
-  end
-
   scenario 'With blank daily_rate' do
     visit root_path
     click_on 'Categorias de carro'

@@ -59,7 +59,6 @@ feature 'Admin edits manufacturer' do
 
     expect(page).to have_content('Nome já está em uso')
     expect(page).to have_content('CNPJ já está em uso')
-    expect(page).to have_content('Endereço já está em uso')
   end
 
   scenario 'with invalid data' do

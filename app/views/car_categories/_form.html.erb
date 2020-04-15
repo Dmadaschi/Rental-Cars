@@ -1,10 +1,4 @@
-<%if  @car_category.errors.present?%>
-  <ul>
-    <% @car_category.errors.full_messages.each do |message| %>
-      <li><%=message%></li>
-    <%end%>
-  </ul>
-<%end%>
+<%= render partial: 'errors', locals: { record: @car_category } %>
 <%= form_with model: @car_category do |f|%>
   <ul>
   <li><%= f.label :name %>

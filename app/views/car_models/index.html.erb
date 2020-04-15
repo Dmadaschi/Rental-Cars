@@ -12,15 +12,17 @@
     </tr>
     <% @car_models.each do |car_model|%>
       <tr>
-      <td><%= car_model.name %></td>
-      <td><%= car_model.year %></td>
-      <td><%= car_model.motorization %></td>
-      <td><%= car_model.fuel_type %></td>
-      <td><%= link_to car_model.manufacturer.name, car_model.manufacturer %></td>
-      <td><%= link_to car_model.car_category.name, car_model.car_category %></td>
+        <td><%= car_model.name %></td>
+        <td><%= car_model.year %></td>
+        <td><%= car_model.motorization %></td>
+        <td><%= car_model.fuel_type %></td>
+        <td><%= link_to car_model.manufacturer.name, car_model.manufacturer %></td>
+        <td><%= link_to car_model.car_category.name, car_model.car_category %></td>
       </tr>
     <%end%>
   </table>
 <% end %>
+
+<h2><%=link_to 'Registrar novo modelo', new_car_model_path%></h2>
 
 <h2><%=link_to 'Voltar', root_path%></h2>
