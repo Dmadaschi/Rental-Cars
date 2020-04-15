@@ -10,5 +10,6 @@ RSpec.describe CarCategory, type: :model do
     it { should validate_numericality_of(:daily_rate).is_greater_than(0) }
     it { should validate_numericality_of(:car_insurance).is_greater_than(0) }
     it { should validate_numericality_of(:third_part_insurance).is_greater_than(0) }
+    it { should have_many(:car_models)}
   end
 end
