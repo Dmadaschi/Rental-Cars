@@ -1,3 +1,6 @@
+<% @rental.errors.full_messages.each do |message| %>
+  <h3><%=message%></h3>
+<%end%>
 <%= form_with model: @rental, locals: true do |f| %>
   <table>
     <tr>
