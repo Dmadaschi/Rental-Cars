@@ -3,6 +3,10 @@ class Customer < ApplicationRecord
   validates :name, :document, :email, presence: true
   validates :document, :email, uniqueness: true
   validate :valid_cpf
+
+  def identification
+    "#{name} - #{document}"
+  end
   
   private
 
