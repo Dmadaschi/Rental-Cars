@@ -3,8 +3,11 @@
 <h1>Rental Cars</h1>
 
 <h3>Bem vindo ao sistema de gestão de locação</h3>
-
-<h4><%= link_to 'Entrar', new_user_session_path %></h4>
+<% unless current_user %>
+    <h4><%= link_to 'Entrar', new_user_session_path %></h4>
+<%else%>
+    <h4><%= link_to 'Log out', destroy_user_session_path, method: :delete %></h4>
+<%end%>
 
 <h4><%= link_to 'Fabricantes', manufacturers_path %></h4>
 

@@ -27,13 +27,7 @@ feature 'Admin register car model' do
     expect(page).to have_content('Hatch')
   end
 
-  scenario 'with only manufacturer and car category' do
-    fiat = Manufacturer.create!(name: 'Fiat')
-    hatch = CarCategory.create!(name: 'Hatch',
-                                daily_rate: '50', 
-                                car_insurance: '20',
-                                third_part_insurance: '20')
-
+  scenario 'with blank values' do
     visit root_path
     click_on 'Modelos de carro'
     click_on 'Registrar novo modelo'
@@ -42,13 +36,13 @@ feature 'Admin register car model' do
     fill_in 'Ano', with: ''
     fill_in 'Motor', with: ''
     fill_in 'Combustivel', with: ''
-    select 'Fiat', from: 'Fabricante'
-    select 'Hatch', from: 'Categoria de carro'
     click_on 'Enviar'
     
     expect(page).to have_content('Modelo não pode ficar em branco')
     expect(page).to have_content('Ano não pode ficar em branco')
     expect(page).to have_content('Motor não pode ficar em branco')
     expect(page).to have_content('Combustivel não pode ficar em branco')
+    expect(page).to have_content('Fabricante é obrigatório(a)')
+    expect(page).to have_content('Fabricante é obrigatório(a)')
   end
 end

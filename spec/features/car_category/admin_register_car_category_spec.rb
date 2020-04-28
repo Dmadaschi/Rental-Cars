@@ -36,59 +36,20 @@ feature 'Admin register car categories' do
     expect(page).to have_content('Nome já está em uso')
   end
 
-  scenario 'With blank name' do
+  scenario 'With blank values' do
     visit root_path
     click_on 'Categorias de carro'
     click_on 'Registrar nova categoria de carro'
 
     fill_in 'Nome', with: ''
-    fill_in 'Diária', with: '50'
-    fill_in 'Seguro', with: '20'
-    fill_in 'Seguro para terceiros', with: '20'
-    click_on 'Enviar'
-    
-    expect(page).to have_content('Nome não pode ficar em branco')
-  end
-
-  scenario 'With blank daily_rate' do
-    visit root_path
-    click_on 'Categorias de carro'
-    click_on 'Registrar nova categoria de carro'
-
-    fill_in 'Nome', with: 'a'
     fill_in 'Diária', with: ''
-    fill_in 'Seguro', with: '20'
-    fill_in 'Seguro para terceiros', with: '20'
-    click_on 'Enviar'
-    
-    expect(page).to have_content('Diária não pode ficar em branco')
-  end
-
-  scenario 'With blank car_insurance' do
-    visit root_path
-    click_on 'Categorias de carro'
-    click_on 'Registrar nova categoria de carro'
-
-    fill_in 'Nome', with: 'a'
-    fill_in 'Diária', with: '50'
     fill_in 'Seguro', with: ''
-    fill_in 'Seguro para terceiros', with: '20'
-    click_on 'Enviar'
-    
-    expect(page).to have_content('Seguro não pode ficar em branco')
-  end
-
-  scenario 'With blank third_part_insurance' do
-    visit root_path
-    click_on 'Categorias de carro'
-    click_on 'Registrar nova categoria de carro'
-
-    fill_in 'Nome', with: 'a'
-    fill_in 'Diária', with: '50'
-    fill_in 'Seguro', with: '20'
     fill_in 'Seguro para terceiros', with: ''
     click_on 'Enviar'
     
+    expect(page).to have_content('Nome não pode ficar em branco')
+    expect(page).to have_content('Diária não pode ficar em branco')
+    expect(page).to have_content('Seguro não pode ficar em branco')
     expect(page).to have_content('Seguro para terceiros não pode ficar em branco')
   end
 
