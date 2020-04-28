@@ -15,7 +15,7 @@ class ManufacturersController < ApplicationController
 
   def create
     @manufacturer = Manufacturer.new(manufacturer_params)  
-    return redirect_to @manufacturer if @manufacturer.save
+    return successfully_created if @manufacturer.save
 
     render :new
   end
@@ -33,6 +33,11 @@ class ManufacturersController < ApplicationController
   end
 
   private
+
+  def successfully_created
+    flash[:success] = 'Fabricante cadastrado com sucesso'
+    redirect_to @manufacturer
+  end
 
   def set_manufacturer
     @manufacturer = Manufacturer.find(params.require(:id))

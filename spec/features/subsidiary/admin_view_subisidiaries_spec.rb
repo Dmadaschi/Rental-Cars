@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'Visitor view subsidiarys' do
   scenario 'successfully' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     Subsidiary.create!(name: 'Sede',
                        cnpj: '01.290.370/0001-73',
                        address: 'endereço teste')
@@ -10,6 +11,7 @@ feature 'Visitor view subsidiarys' do
                        cnpj: '49.751.431/0001-89',
                        address: 'Avenia Paulista')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
 
@@ -18,6 +20,7 @@ feature 'Visitor view subsidiarys' do
   end
 
   scenario 'and view details' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     Subsidiary.create!(name: 'Sede',
                        cnpj: '01.290.370/0001-73', 
                        address: 'endereço teste')
@@ -26,6 +29,7 @@ feature 'Visitor view subsidiarys' do
                        cnpj: '49.751.431/0001-89',
                        address: 'Avenia Paulista')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
     click_on 'Sede'
@@ -39,6 +43,8 @@ feature 'Visitor view subsidiarys' do
   end
 
   scenario 'and no subsidiarys are created' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
 
@@ -46,6 +52,8 @@ feature 'Visitor view subsidiarys' do
   end
 
   scenario 'and return to home page' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
     click_on 'Voltar'
@@ -54,6 +62,7 @@ feature 'Visitor view subsidiarys' do
   end
 
   scenario 'and return to subsidiarys page' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     Subsidiary.create!(name: 'Sede',
                        cnpj: '01.290.370/0001-73', 
                        address: 'endereço teste')
@@ -62,6 +71,7 @@ feature 'Visitor view subsidiarys' do
                        cnpj: '49.751.431/0001-89',
                        address: 'Avenia Paulista')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
     click_on 'Sede'

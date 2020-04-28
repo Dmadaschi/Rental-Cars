@@ -13,12 +13,17 @@ class CarCategoriesController < ApplicationController
 
   def create
     @car_category = CarCategory.new(car_category_params)
-    return redirect_to @car_category if @car_category.save
+    return successfully_created if @car_category.save
 
     render :new
   end
   
   private
+
+  def successfully_created
+    flash[:success] = 'Categoria de carro cadastrada com sucesso'
+    redirect_to @car_category
+  end
 
   def set_car_category
     @car_category = CarCategory.find(params.require(:id))

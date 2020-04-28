@@ -13,12 +13,17 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    return redirect_to @customer if @customer.save
+    return successfully_created if @customer.save
 
     render :new
   end
   
   private
+
+  def successfully_created
+    flash[:success] = 'Cliente cadastrado com sucesso'
+    redirect_to @customer
+  end
 
   def set_customer
     @customer = Customer.find(params.require(:id))

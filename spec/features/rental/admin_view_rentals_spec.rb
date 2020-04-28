@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'Admin view rentals' do
   scenario 'successfully' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     customer = Customer.create!(name: 'João',
                                 document: '348.586.730-65', 
                                 email: 'joao@teste.com.br')
@@ -14,6 +15,7 @@ feature 'Admin view rentals' do
                    customer: customer,
                    car_category: car_category)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Locação'
 
@@ -23,12 +25,15 @@ feature 'Admin view rentals' do
     expect(page).to have_content('Hatch')
   end
   scenario 'and no manufacturers are created' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Locação'
 
     expect(page).to have_content('Nenhuma locação cadastrado')
   end
   scenario 'with multiples rentals' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     customer = Customer.create!(name: 'João',
                                 document: '348.586.730-65', 
                                 email: 'joao@teste.com.br')
@@ -53,6 +58,7 @@ feature 'Admin view rentals' do
                    customer: another_customer,
                    car_category: another_car_category)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Locação'
 
@@ -66,6 +72,7 @@ feature 'Admin view rentals' do
     expect(page).to have_content(another_car_category.name)
   end
   scenario 'and redirect to customer' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     customer = Customer.create!(name: 'João',
                                 document: '348.586.730-65', 
                                 email: 'joao@teste.com.br')
@@ -78,7 +85,7 @@ feature 'Admin view rentals' do
                    customer: customer,
                    car_category: car_category)
 
-
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Locação'
     click_on customer.name
@@ -88,6 +95,7 @@ feature 'Admin view rentals' do
     expect(page).to have_content(customer.email)
   end
   scenario 'and redirect to car_category' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     customer = Customer.create!(name: 'João',
                                 document: '348.586.730-65', 
                                 email: 'joao@teste.com.br')
@@ -100,7 +108,7 @@ feature 'Admin view rentals' do
                    customer: customer,
                    car_category: car_category)
 
-
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Locação'
     click_on car_category.name

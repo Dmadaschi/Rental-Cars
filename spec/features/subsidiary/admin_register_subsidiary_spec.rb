@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin register Subsisiary' do
   scenario 'from index page' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
 
@@ -9,6 +11,8 @@ feature 'Admin register Subsisiary' do
   end
 
   scenario 'successfully' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'

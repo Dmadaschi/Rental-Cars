@@ -10,13 +10,18 @@ class CarModelsController < ApplicationController
 
   def create
     @car_model = CarModel.new(car_model_params)
-    return redirect_to car_models_path if @car_model.save
+    return successfully_created if @car_model.save
     
     set_collections
     render :new
   end
 
   private
+
+  def successfully_created
+    flash[:success] = 'Modelo de carro cadastrado com sucesso'
+    redirect_to car_models_path
+  end
 
   def set_collections
     @manufacturers = Manufacturer.all

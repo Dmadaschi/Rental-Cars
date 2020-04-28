@@ -2,11 +2,14 @@ require 'rails_helper'
 
 feature 'Admin register car model' do
   scenario 'successfully' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     fiat = Manufacturer.create!(name: 'Fiat')
     hatch = CarCategory.create!(name: 'Hatch',
                                 daily_rate: '50', 
                                 car_insurance: '20',
                                 third_part_insurance: '20')
+
+    login_as(user, scope: :user)                                
     visit root_path
     click_on 'Modelos de carro'
     click_on 'Registrar novo modelo'
@@ -25,9 +28,12 @@ feature 'Admin register car model' do
     expect(page).to have_content('flex')
     expect(page).to have_content('Uno')
     expect(page).to have_content('Hatch')
+    expect(page).to have_content('Modelo de carro cadastrado com sucesso')
   end
 
   scenario 'with blank values' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Modelos de carro'
     click_on 'Registrar novo modelo'
@@ -44,5 +50,6 @@ feature 'Admin register car model' do
     expect(page).to have_content('Combustivel não pode ficar em branco')
     expect(page).to have_content('Fabricante é obrigatório(a)')
     expect(page).to have_content('Fabricante é obrigatório(a)')
+    expect(page).to_not have_content('Modelo de carro cadastrado com sucesso')
   end
 end

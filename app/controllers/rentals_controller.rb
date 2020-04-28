@@ -11,14 +11,20 @@ class RentalsController < ApplicationController
 
   def create
     @rental = Rental.new(rental_params)
-    return redirect_to rentals_path if @rental.save
-
+    return successfully_created if @rental.save
+    
     @customers = Customer.all
     @car_categories = CarCategory.all
+
     render :new
   end
 
   private
+
+  def successfully_created
+    flash[:success] = 'Locação realizada com sucesso'
+    redirect_to rentals_path
+  end
 
   def rental_params
     params.require(:rental).permit(:start_date, :end_date,

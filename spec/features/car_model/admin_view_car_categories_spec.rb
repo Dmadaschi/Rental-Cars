@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'Admin view car model' do
   scenario 'successfully' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     fiat = Manufacturer.create!(name: 'Fiat')
     hatch = CarCategory.create!(name: 'Hatch',
                                 daily_rate: '50', 
@@ -13,6 +14,8 @@ feature 'Admin view car model' do
                      fuel_type: 'flex',
                      manufacturer: fiat,
                      car_category: hatch)
+
+    login_as(user, scope: :user)                     
     visit root_path
     click_on 'Modelos de carro'
 
@@ -25,6 +28,7 @@ feature 'Admin view car model' do
   end
 
   scenario 'whith multiples car models' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     fiat = Manufacturer.create!(name: 'Fiat')
     hatch = CarCategory.create!(name: 'Hatch',
                                 daily_rate: '50', 
@@ -46,7 +50,9 @@ feature 'Admin view car model' do
                      motorization: '62',
                      fuel_type: 'gasolina',
                      manufacturer: honda,
-                     car_category: sedan)                 
+                     car_category: sedan)
+                     
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Modelos de carro'
 
@@ -65,6 +71,8 @@ feature 'Admin view car model' do
   end
 
   scenario 'with no car model' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Modelos de carro'
 
@@ -72,6 +80,7 @@ feature 'Admin view car model' do
   end
 
   scenario 'and redirtect to manufacturer' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     fiat = Manufacturer.create!(name: 'Fiat')
     hatch = CarCategory.create!(name: 'Hatch',
                                 daily_rate: '50', 
@@ -83,7 +92,7 @@ feature 'Admin view car model' do
                      fuel_type: 'flex',
                      manufacturer: fiat,
                      car_category: hatch)
-
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Modelos de carro'
     click_on 'Fiat'
@@ -94,6 +103,7 @@ feature 'Admin view car model' do
   end
 
   scenario 'and redirtect to manufacturer' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     fiat = Manufacturer.create!(name: 'Fiat')
     hatch = CarCategory.create!(name: 'Hatch',
                                 daily_rate: '50', 
@@ -106,6 +116,7 @@ feature 'Admin view car model' do
                      manufacturer: fiat,
                      car_category: hatch)
 
+    login_as(user, scope: :user)    
     visit root_path
     click_on 'Modelos de carro'
     click_on 'Hatch'
@@ -116,6 +127,7 @@ feature 'Admin view car model' do
   end
 
   scenario 'and return to home' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
     fiat = Manufacturer.create!(name: 'Fiat')
     hatch = CarCategory.create!(name: 'Hatch',
                                 daily_rate: '50', 
@@ -128,6 +140,7 @@ feature 'Admin view car model' do
                      manufacturer: fiat,
                      car_category: hatch)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Modelos de carro'
     click_on 'Voltar'

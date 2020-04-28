@@ -1,10 +1,4 @@
-<%if  @customer.errors.present?%>
-  <ul>
-    <% @customer.errors.full_messages.each do |message| %>
-      <li><%=message%></li>
-    <%end%>
-  </ul>
-<%end%>
+<%= render partial: 'errors', locals: { record: @customer } %>
 
 <%= form_with model: @customer do |f|%>
   <ul>
