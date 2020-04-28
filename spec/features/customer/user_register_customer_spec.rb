@@ -48,17 +48,4 @@ feature 'User register customers' do
     expect(page).to have_content('CPF não pode ficar em branco')
     expect(page).to have_content('Email não pode ficar em branco')
   end
-
-  scenario 'With invalid document' do
-    visit root_path
-    click_on 'Clientes'
-    click_on 'Registrar novo cliente'
-
-    fill_in 'Nome', with: 'João'
-    fill_in 'CPF', with: '00000000000'
-    fill_in 'Email', with: 'joao@teste.com.br'
-    click_on 'Enviar'
-    
-    expect(page).to have_content('Digite um CPF valido')
-  end
 end

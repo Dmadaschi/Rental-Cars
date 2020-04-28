@@ -13,6 +13,6 @@ class Customer < ApplicationRecord
   def valid_cpf 
     return if CPF.valid?(document)
 
-    self.errors[:base] << 'Digite um CPF valido'
+    self.errors[:document] << 'Digite um CPF valido'
   end
 end
