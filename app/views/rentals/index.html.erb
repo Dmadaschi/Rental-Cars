@@ -1,21 +1,32 @@
-<%if @rentals.blank? %>
+<div>
+  <%= form_with url: search_rentals_path, local: true, method: :get do |f|%>
+    <%= f.label :q, 'Busca' %>
+    <%= f.search_field :q %>
+    <%= f.submit 'Pesquisar' %>
+  <% end %>
+ </div>
+<% if @rentals.blank? %>
   <h1>Nenhuma locação cadastrado</h1>
-<%else%>
-  <table>
-    <tr>
-      <th>Data de inicio</th>
-      <th>Data final</th>
-      <th>Cliente</th>
-      <th>Categoria</th>
-    </tr>
-    <%@rentals.each do |rental|%>
+<% else %>
+  <div>
+    <table>
       <tr>
-        <td><%=l rental.start_date%>
-        <td><%=l rental.end_date%>
-        <td><%=link_to rental.customer.identification, rental.customer%>
-        <td><%=link_to rental.car_category.name, rental.car_category%>
+        <th>Código</th>
+        <th>Data de inicio</th>
+        <th>Data final</th>
+        <th>Cliente</th>
+        <th>Categoria</th>
       </tr>
-    <%end%>
-  </table>
-<%end%>
-<%=link_to 'Registrar nova locação', new_rental_path%>
+      <% @rentals.each do |rental| %>
+        <tr>
+          <td><%= rental.code %>
+          <td><%= l rental.start_date %>
+          <td><%= l rental.end_date %>
+          <td><%= link_to rental.customer.identification, rental.customer %>
+          <td><%= link_to rental.car_category.name, rental.car_category %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+<%= link_to 'Registrar nova locação', new_rental_path %>

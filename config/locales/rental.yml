@@ -10,4 +10,5 @@ pt-BR:
         customer_id: Cliente
         car_category: Categoria de carro
         car_category_id: Categoria de carro
+        code: Código
 

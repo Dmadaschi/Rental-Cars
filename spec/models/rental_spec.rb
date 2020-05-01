@@ -22,4 +22,25 @@ RSpec.describe Rental, type: :model do
       expect(rental.errors[:car_category]).to include('é obrigatório(a)')
     end
   end
+
+  context '#code' do
+    it 'created automatically' do
+      customer = Customer.create!(name: 'João',
+                                document: '348.586.730-65', 
+                                email: 'joao@teste.com.br')
+      car_category = CarCategory.create!(name: 'Hatch',
+                                         daily_rate: '50', 
+                                         car_insurance: '20',
+                                         third_part_insurance: '20')
+
+      rental = Rental.new(start_date: '16/04/2030',
+                          end_date: '18/04/2030',
+                          customer: customer,
+                          car_category: car_category)
+
+      rental.save!
+      
+      expect(rental.code.size).to eq(6)
+    end
+  end
 end

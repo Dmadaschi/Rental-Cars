@@ -19,6 +19,11 @@ class RentalsController < ApplicationController
     render :new
   end
 
+  def search
+    @rentals = Rental.where(code: params[:q])
+    render :index
+  end
+
   private
 
   def successfully_created
