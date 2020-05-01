@@ -22,8 +22,8 @@ class ManufacturersController < ApplicationController
   end
 
   def update   
-    return redirect_to @manufacturer if @manufacturer
-                                        .update(manufacturer_params)
+    return successfully_updated if @manufacturer
+                                    .update(manufacturer_params)
     
     render :edit
   end
@@ -37,6 +37,11 @@ class ManufacturersController < ApplicationController
 
   def successfully_created
     flash[:success] = 'Fabricante cadastrado com sucesso'
+    redirect_to @manufacturer
+  end
+
+  def successfully_updated
+    flash[:success] = 'Fabricante atualizado com sucesso'
     redirect_to @manufacturer
   end
 

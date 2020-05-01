@@ -23,6 +23,7 @@ feature 'Admin register Subsisiary' do
     click_on 'Enviar'
 
     expect(current_path).to eq subsidiary_path(Subsidiary.last.id)
+    expect(page).to have_content('Filial cadastrada com sucesso')
     expect(page).to have_content('Sede')
     expect(page).to have_content('71.510.722/0001-34')
     expect(page).to have_content('Av dos testes numero 100')

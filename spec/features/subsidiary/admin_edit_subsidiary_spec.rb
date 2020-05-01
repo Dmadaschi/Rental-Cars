@@ -17,6 +17,7 @@ feature 'Admin edits manufacturer' do
     fill_in 'Endereço', with: 'Av dos testes numero 100'
     click_on 'Enviar'
 
+    expect(page).to have_content('Filial atualizada com sucesso')
     expect(page).to have_content('Paulista')
     expect(page).to have_content('71.510.722/0001-34')
     expect(page).to have_content('Av dos testes numero 100')
@@ -82,6 +83,5 @@ feature 'Admin edits manufacturer' do
     click_on 'Enviar'
 
     expect(page).to have_content('Digite um CNPJ valido')
-
   end
 end

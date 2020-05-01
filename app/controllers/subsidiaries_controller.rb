@@ -16,14 +16,14 @@ class SubsidiariesController < ApplicationController
 
   def create
     @subsidiary = Subsidiary.new(subsidiary_params)
-    return redirect_to @subsidiary if @subsidiary.save
+    return successfully_created if @subsidiary.save
 
     render :new
   end
 
   def update
-    return redirect_to @subsidiary if @subsidiary
-                                      .update(subsidiary_params)
+    return successfully_updated if @subsidiary
+                                    .update(subsidiary_params)
     
     render :edit
   end
@@ -34,6 +34,16 @@ class SubsidiariesController < ApplicationController
   end
 
   private
+
+  def successfully_created
+    flash[:success] = 'Filial cadastrada com sucesso'
+    redirect_to @subsidiary
+  end
+
+  def successfully_updated
+    flash[:success] = 'Filial atualizada com sucesso'
+    redirect_to @subsidiary
+  end
 
   def set_subsidiary
     @subsidiary = Subsidiary.find(params.require(:id))

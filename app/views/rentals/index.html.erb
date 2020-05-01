@@ -1,7 +1,7 @@
 <div>
   <%= form_with url: search_rentals_path, local: true, method: :get do |f|%>
-    <%= f.label :q, 'Busca' %>
-    <%= f.search_field :q %>
+    <%= f.label :code, 'Busca' %>
+    <%= f.search_field :code %>
     <%= f.submit 'Pesquisar' %>
   <% end %>
  </div>

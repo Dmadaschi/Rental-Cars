@@ -7,26 +7,28 @@ class RentalsController < ApplicationController
 
   def new
     @rental = Rental.new
-    @customers = Customer.all
-    @car_categories = CarCategory.all
+    set_collections
   end
 
   def create
     @rental = Rental.new(rental_params)
     return successfully_created if @rental.save
     
-    @customers = Customer.all
-    @car_categories = CarCategory.all
-
+    set_collections
     render :new
   end
 
   def search
-    @rentals = Rental.where(code: params[:q])
+    @rentals = [Rental.find_by_code(params[:code])]
     render :index
   end
 
   private
+
+  def set_collections
+    @customers = Customer.all
+    @car_categories = CarCategory.all
+  end
 
   def successfully_created
     flash[:success] = 'Locação realizada com sucesso'
