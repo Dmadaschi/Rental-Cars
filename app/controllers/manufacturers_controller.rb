@@ -1,5 +1,6 @@
 class ManufacturersController < ApplicationController
   before_action :set_manufacturer, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   def edit; end
 

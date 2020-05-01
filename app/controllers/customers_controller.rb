@@ -1,7 +1,9 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: %i[show]
+  before_action :authenticate_user!
 
-  def show; end
+  def show
+    @customer = Customer.find(params.require(:id))
+  end
 
   def index
     @customers = Customer.all
@@ -23,10 +25,6 @@ class CustomersController < ApplicationController
   def successfully_created
     flash[:success] = 'Cliente cadastrado com sucesso'
     redirect_to @customer
-  end
-
-  def set_customer
-    @customer = Customer.find(params.require(:id))
   end
 
   def customer_params

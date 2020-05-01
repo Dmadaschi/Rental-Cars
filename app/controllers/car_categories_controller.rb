@@ -1,7 +1,9 @@
 class CarCategoriesController < ApplicationController
-  before_action :set_car_category, only: %i[show]
-
-  def show; end
+  before_action :authenticate_user!
+  
+  def show
+    @car_category = CarCategory.find(params.require(:id))
+  end
 
   def index
     @car_categories = CarCategory.all
@@ -23,10 +25,6 @@ class CarCategoriesController < ApplicationController
   def successfully_created
     flash[:success] = 'Categoria de carro cadastrada com sucesso'
     redirect_to @car_category
-  end
-
-  def set_car_category
-    @car_category = CarCategory.find(params.require(:id))
   end
 
   def car_category_params
