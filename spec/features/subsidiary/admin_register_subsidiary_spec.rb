@@ -29,4 +29,24 @@ feature 'Admin register Subsisiary' do
     expect(page).to have_content('Av dos testes numero 100')
     expect(page).to have_link('Voltar')
   end
+
+  scenario 'and name must be unique' do
+    user = User.create!(email:'teste@teste.com', password: '12345678')
+
+    Subsidiary.create!(name: 'Sede',
+                       cnpj: '01.290.370/0001-73', 
+                       address: 'endereço teste')
+
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Filiais'
+    click_on 'Registrar nova filial'
+
+    fill_in 'Nome', with: 'Sede'
+    fill_in 'CNPJ', with: '01.290.370/0001-73'
+    fill_in 'Endereço', with: 'Av dos testes numero 100'
+    click_on 'Enviar'
+    
+    expect(page).to have_content('Nome já está em uso')
+  end
 end

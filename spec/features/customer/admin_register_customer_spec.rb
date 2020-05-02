@@ -19,28 +19,6 @@ feature 'User register customers' do
     expect(page).to have_content('Cliente cadastrado com sucesso')
 
   end
-  
-  scenario 'With already existant values' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    
-    Customer.create!(name: 'João',
-                     document: '348.586.730-65', 
-                     email: 'joao@teste.com.br')
-    login_as(user, scope: :user)
-    visit root_path
-    click_on 'Clientes'
-    click_on 'Registrar novo cliente'
-
-    fill_in 'Nome', with: 'João'
-    fill_in 'CPF', with: '348.586.730-65'
-    fill_in 'Email', with: 'joao@teste.com.br'
-    click_on 'Enviar'
-
-    expect(page).not_to have_content('Nome já está em uso')
-    expect(page).to have_content('CPF já está em uso')
-    expect(page).to have_content('Email já está em uso')
-    expect(page).to_not have_content('Cliente cadastrado com sucesso')
-  end
 
   scenario 'With blank values' do
     user = User.create!(email:'teste@teste.com', password: '12345678')

@@ -27,7 +27,8 @@ feature 'Admin register rentals' do
     expect(page).to have_content(car_category.name)
     expect(page).to have_content('Locação realizada com sucesso')
   end
-  scenario 'must fill all fields' do
+
+  scenario 'and must fill all fields' do
     user = User.create!(email:'teste@teste.com', password: '12345678')
     login_as(user, scope: :user)
     visit root_path

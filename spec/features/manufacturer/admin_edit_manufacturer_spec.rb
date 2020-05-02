@@ -32,20 +32,4 @@ feature 'Admin edits manufacturer' do
 
     expect(page).to have_content('Nome não pode ficar em branco')
   end
-
-  scenario 'with invalid name' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    Manufacturer.create(name: 'Fiat')
-    Manufacturer.create(name: 'Honda')
-
-    login_as(user, scope: :user)
-    visit root_path
-    click_on 'Fabricantes'
-    click_on 'Fiat'
-    click_on 'Editar'
-    fill_in 'Nome', with: 'Honda'
-    click_on 'Enviar'
-
-    expect(page).to have_content('Nome já está em uso')
-  end
 end
