@@ -19,6 +19,14 @@ class CustomersController < ApplicationController
 
     render :new
   end
+
+  def search
+    search_query = params[:search]
+    @customers = Customer.where('name like ?',"%#{search_query}%").or(Customer.where(document: search_query))
+
+    flash[:notice] = "Resultado da busca por: #{search_query}"
+    render :index
+  end
   
   private
 
