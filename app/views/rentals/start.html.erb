@@ -1,0 +1,12 @@
+<h1>Confirmar Início de Locação</h1>
+<dl>
+  <dt>Código</dt>
+  <dd><%= @rental.code %>
+  <dt>Categoria</dt>
+  <dd><%= @rental.car_category.name %></dd>
+</dl>
+<%= form_with(model: [@rental, @car_rental], local: true) do |f|%>
+  <%= f.label :car_id %>
+  <%= f.collection_select :car_id, @available_cars, :id, :description %>
+  <%= f.submit 'Confirmar' %>
+<% end %>

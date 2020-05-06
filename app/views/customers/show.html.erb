@@ -2,4 +2,14 @@
 <h2>CPF: <%= @customer.document %></h2>
 <h2>Email: <%= @customer.email %></h2>
 
+<%= @customer.rentals.each do |rental|%>
+  <div>
+
+    <h1>Agendamentos</h1>
+    <h2>Código: <%= rental.code%><h2>
+    <h3>Categoria <%= rental.car_category.name%></h2>
+    <h3><%= link_to 'Iniciar Locação', start_rental_path(rental.id) %></h2>
+  </div>
+<%end%>
+
 <h2><%=link_to 'Voltar', customers_path%></h2>

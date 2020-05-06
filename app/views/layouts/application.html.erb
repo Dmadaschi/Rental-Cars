@@ -10,9 +10,7 @@
   </head>
 
   <body>
-    <%= flash[:notice]%>
-    <%= flash[:success]%>
-    <%= flash[:alert]%>
+    
     <nav>
       <% if user_signed_in? %>
         <h4><%= link_to 'Log out', destroy_user_session_path, method: :delete %></h4>
@@ -31,8 +29,11 @@
       <%else%>
         <h4><%= link_to 'Entrar', new_user_session_path %></h4>
       <%end%>
-
     </nav>
+
+    <h2><%= flash[:notice]%></h2>
+    <h2><%= flash[:success]%></h2>
+    <h2><%= flash[:alert]%></h2>
 
     <%= yield %>
   </body>

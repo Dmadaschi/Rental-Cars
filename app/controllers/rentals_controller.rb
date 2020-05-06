@@ -18,12 +18,25 @@ class RentalsController < ApplicationController
     render :new
   end
 
+  def start
+    @rental = Rental.find(params[:id])
+    car_models = @rental.car_category.car_models
+    @available_cars = Car.where(car_model: car_models)
+    @car_rental = CarRental.new(rental: @rental)
+  end
+
   def search
     @rentals = [Rental.find_by_code(params[:code])]
+    rental_not_found if @rentals.first.blank?
     render :index
   end
 
   private
+
+  def rental_not_found
+    flash[:notice] = "Nenhuma locação encontrada com este código"
+    @rentals = Rental.all
+  end
 
   def set_collections
     @customers = Customer.all

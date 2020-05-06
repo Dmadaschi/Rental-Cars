@@ -3,6 +3,7 @@ class Customer < ApplicationRecord
   validates :name, :document, :email, presence: true
   validates :document, :email, uniqueness: true
   validate :valid_cpf
+  has_many :rentals
 
   def identification
     "#{name} - #{document}"
