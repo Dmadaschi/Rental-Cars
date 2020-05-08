@@ -39,6 +39,7 @@ group :development, :test do
   gem 'capybara', '~> 3.32'
   gem 'pry-rails', '~> 0.3.4'
   gem 'shoulda-matchers', '~> 4.3'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -48,6 +49,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

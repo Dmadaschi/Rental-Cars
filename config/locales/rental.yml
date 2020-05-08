@@ -1,4 +1,6 @@
 pt-BR:
+  scheduled: Agendada
+  on_going: Iniciada
   activerecord:
     models:
       rental: Locação
@@ -11,4 +13,6 @@ pt-BR:
         car_category: Categoria de carro
         car_category_id: Categoria de carro
         code: Código
+        car_id: Carro
+        car: Carro
 

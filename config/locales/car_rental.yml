@@ -1,0 +1,18 @@
+pt-BR:
+  activerecord:
+    models:
+      car_rental: Locação do Carro
+    attributes:
+      car_rental:
+        rental: Locação
+        rental_id: Locação
+        user: Usúario
+        user_id: Usúario
+        start_date: Data de inicio
+        daily_rate: Diária
+        car_insurance: Seguro
+        third_part_insurance: Seguro para terceiros
+        code: Código
+        car_id: Carro
+        car: Carro
+
