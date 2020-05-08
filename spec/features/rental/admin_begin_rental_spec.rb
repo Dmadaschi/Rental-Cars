@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin begin rental' do
   scenario 'from customer search' do
-    user = create!(:user)
+    user = create(:user)
     car_category = create(:car_category, name: 'B')
     customer = create(:customer)
     rental = create(:rental, customer: customer, car_category: car_category)
