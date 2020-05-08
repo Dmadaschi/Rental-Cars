@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature 'Admin register valid manufacturer' do
   scenario 'and name must be unique' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    Manufacturer.create(name: 'Fiat' )
+    user = create(:user)
+   create(:manufacturer, name: 'Fiat')
     login_as(user, scope: :user)
 
     visit root_path

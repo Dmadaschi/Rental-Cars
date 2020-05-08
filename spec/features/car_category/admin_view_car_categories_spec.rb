@@ -57,14 +57,7 @@ feature 'Admin view car category' do
 
   scenario 'and return to subsidiarys page' do
     user = create(:user)
-    CarCategory.create(name: 'A',
-                        daily_rate: '50', 
-                        car_insurance: '20',
-                        third_part_insurance: '20')
-    CarCategory.create(name: 'B',
-                        daily_rate: '70', 
-                        car_insurance: '30',
-                        third_part_insurance: '30')
+    create(:car_category, name: 'A')
 
     login_as(user, scope: :user)
     visit root_path

@@ -2,13 +2,9 @@ require 'rails_helper'
 
 feature 'User search_customer' do
   scenario 'seccessfully with name' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    customer = Customer.create!(name: 'João',
-                                document: CPF.generate, 
-                                email: 'joao@teste.com.br')
-    another_customer = Customer.create!(name: 'Jorge',
-                                document: CPF.generate, 
-                                email: 'jorge@teste.com.br')                                
+    user = create(:user)
+    customer = create(:customer)
+    another_customer = create(:customer)                              
 
     login_as(user, scope: :user)
     visit customers_path
@@ -21,13 +17,9 @@ feature 'User search_customer' do
   end
 
   scenario 'seccessfully with cpf' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    customer = Customer.create!(name: 'João',
-                                document: CPF.generate, 
-                                email: 'joao@teste.com.br')
-    another_customer = Customer.create!(name: 'Jorge',
-                                document: CPF.generate, 
-                                email: 'jorge@teste.com.br')                                
+    user = create(:user)
+    customer = create(:customer)
+    another_customer = create(:customer)                                
 
     login_as(user, scope: :user)
     visit customers_path
@@ -40,13 +32,9 @@ feature 'User search_customer' do
   end
 
   scenario 'with invalid name' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    customer = Customer.create!(name: 'João',
-                                document: CPF.generate, 
-                                email: 'joao@teste.com.br')
-    another_customer = Customer.create!(name: 'Jorge',
-                                document: CPF.generate, 
-                                email: 'jorge@teste.com.br')                                
+    user = create(:user)
+    customer = create(:customer, name: 'João')
+    another_customer = create(:customer, name: 'Jorge')                         
 
     login_as(user, scope: :user)
     visit customers_path
@@ -60,13 +48,9 @@ feature 'User search_customer' do
   end
 
   scenario 'with invalid cpf' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    customer = Customer.create!(name: 'João',
-                                document: CPF.generate, 
-                                email: 'joao@teste.com.br')
-    another_customer = Customer.create!(name: 'Jorge',
-                                document: CPF.generate, 
-                                email: 'jorge@teste.com.br')                                
+    user = create(:user)
+    customer = create(:customer)
+    another_customer = create(:customer)                                
 
     login_as(user, scope: :user)
     visit customers_path
@@ -80,13 +64,9 @@ feature 'User search_customer' do
   end
 
   scenario 'with multiple recors' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    customer = Customer.create!(name: 'João',
-                                document: CPF.generate, 
-                                email: 'joao@teste.com.br')
-    another_customer = Customer.create!(name: 'Jorge',
-                                document: CPF.generate, 
-                                email: 'jorge@teste.com.br')                                
+    user = create(:user)
+    customer = create(:customer, name: 'Jõao')
+    another_customer = create(:customer, name: 'Jorge')                                
 
     login_as(user, scope: :user)
     visit customers_path

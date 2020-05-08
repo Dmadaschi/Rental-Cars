@@ -2,14 +2,9 @@ require 'rails_helper'
 
 feature 'Admin register rentals' do
   scenario 'successfully' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    customer = Customer.create!(name: 'João',
-                                document: '348.586.730-65', 
-                                email: 'joao@teste.com.br')
-    car_category = CarCategory.create!(name: 'Hatch',
-                                       daily_rate: '50', 
-                                       car_insurance: '20',
-                                       third_part_insurance: '20')
+    user = create(:user)
+    customer = create(:customer)
+    car_category = create(:car_category)
 
     login_as(user, scope: :user)                                       
     visit root_path
@@ -29,7 +24,7 @@ feature 'Admin register rentals' do
   end
 
   scenario 'and must fill all fields' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
+    user = create(:user)
     login_as(user, scope: :user)
     visit root_path
     click_on 'Locação'

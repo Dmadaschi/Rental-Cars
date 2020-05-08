@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature 'Admin edits manufacturer' do
   scenario 'successfully' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    Manufacturer.create(name: 'Fiat')
+    user = create(:user)
+    create(:manufacturer, name: 'Fiat')
 
     login_as(user, scope: :user)
     visit root_path
@@ -19,8 +19,8 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'with blank name' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    Manufacturer.create(name: 'Fiat')
+    user = create(:user)
+    create(:manufacturer, name: 'Fiat')
 
     login_as(user, scope: :user)
     visit root_path

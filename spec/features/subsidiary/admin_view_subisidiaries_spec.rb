@@ -2,14 +2,9 @@ require 'rails_helper'
 
 feature 'Visitor view subsidiarys' do
   scenario 'successfully' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    Subsidiary.create!(name: 'Sede',
-                       cnpj: '01.290.370/0001-73',
-                       address: 'endereço teste')
-
-    Subsidiary.create!(name: 'Paulista', 
-                       cnpj: '49.751.431/0001-89',
-                       address: 'Avenia Paulista')
+    user = create(:user)
+    create(:subsidiary, name: 'Sede')
+    create(:subsidiary, name: 'Paulista')
 
     login_as(user, scope: :user)
     visit root_path
@@ -20,14 +15,12 @@ feature 'Visitor view subsidiarys' do
   end
 
   scenario 'and view details' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    Subsidiary.create!(name: 'Sede',
-                       cnpj: '01.290.370/0001-73', 
-                       address: 'endereço teste')
+    user = create(:user)
+    create(:subsidiary, name: 'Sede',
+           cnpj: '01.290.370/0001-73', address: 'endereço teste')
 
-    Subsidiary.create!(name: 'Paulista', 
-                       cnpj: '49.751.431/0001-89',
-                       address: 'Avenia Paulista')
+    create(:subsidiary, name: 'Paulista', 
+           cnpj: '49.751.431/0001-89', address: 'Avenia Paulista')
 
     login_as(user, scope: :user)
     visit root_path
@@ -43,7 +36,7 @@ feature 'Visitor view subsidiarys' do
   end
 
   scenario 'and no subsidiarys are created' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
+    user = create(:user)
     login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
@@ -52,7 +45,7 @@ feature 'Visitor view subsidiarys' do
   end
 
   scenario 'and return to home page' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
+    user = create(:user)
     login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
@@ -62,14 +55,8 @@ feature 'Visitor view subsidiarys' do
   end
 
   scenario 'and return to subsidiarys page' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    Subsidiary.create!(name: 'Sede',
-                       cnpj: '01.290.370/0001-73', 
-                       address: 'endereço teste')
-
-    Subsidiary.create!(name: 'Paulista', 
-                       cnpj: '49.751.431/0001-89',
-                       address: 'Avenia Paulista')
+    user = create(:user)
+    create(:subsidiary, name: 'Sede')
 
     login_as(user, scope: :user)
     visit root_path

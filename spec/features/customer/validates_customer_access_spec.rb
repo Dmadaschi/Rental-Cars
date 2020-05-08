@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Validates customer access' do
   context 'Admin singed in and' do
     scenario 'view index' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
+      user = create(:user)
 
       login_as(user, scope: :user)
       visit customers_path
@@ -12,7 +12,7 @@ feature 'Validates customer access' do
       expect(current_path).not_to eq(new_user_session_path)
     end
     scenario 'view new' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
+      user = create(:user)
 
       login_as(user, scope: :user)
       visit new_customer_path
@@ -21,10 +21,8 @@ feature 'Validates customer access' do
       expect(current_path).not_to eq(new_user_session_path)
     end
     scenario 'view show' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
-      customer = Customer.create!(name: 'João',
-                                  document: '348.586.730-65', 
-                                  email: 'joao@teste.com.br')
+      user = create(:user)
+      customer = create(:customer)
 
       login_as(user, scope: :user)
       visit customer_path(customer)
@@ -49,9 +47,7 @@ feature 'Validates customer access' do
     end
 
     scenario 'view show' do
-      customer = Customer.create!(name: 'João',
-                                  document: '348.586.730-65', 
-                                  email: 'joao@teste.com.br')
+      customer = create(:customer)
 
       visit customer_path(customer)
 

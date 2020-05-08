@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register Subsisiary' do
   scenario 'from index page' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
+    user = create(:user)
     login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
@@ -11,7 +11,7 @@ feature 'Admin register Subsisiary' do
   end
 
   scenario 'successfully' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
+    user = create(:user)
     login_as(user, scope: :user)
     visit root_path
     click_on 'Filiais'
@@ -31,11 +31,8 @@ feature 'Admin register Subsisiary' do
   end
 
   scenario 'and name must be unique' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-
-    Subsidiary.create!(name: 'Sede',
-                       cnpj: '01.290.370/0001-73', 
-                       address: 'endereço teste')
+    user = create(:user)
+    create(:subsidiary, name: 'Sede')
 
     login_as(user, scope: :user)
     visit root_path

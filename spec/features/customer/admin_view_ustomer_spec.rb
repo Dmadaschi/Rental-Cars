@@ -2,10 +2,8 @@ require 'rails_helper'
 
 feature 'Admin view customer' do
   scenario 'successfully' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    Customer.create!(name: 'José',
-                     document: CPF.generate,
-                     email: 'teste@teste.com.br')
+    user = create(:user)
+    create(:customer, name: 'José')
 
     login_as(user, scope: :user)                     
     visit root_path
@@ -15,13 +13,9 @@ feature 'Admin view customer' do
   end
 
   scenario 'with multiples customers' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    Customer.create!(name: 'José',
-                     document: CPF.generate,
-                     email: 'teste@teste.com.br')
-    Customer.create!(name: 'João',
-                     document: CPF.generate,
-                     email: 'joão@teste.com.br')                     
+    user = create(:user)
+    create(:customer, name: 'José')
+    create(:customer, name: 'João')                    
 
     login_as(user, scope: :user)                     
     visit root_path
@@ -32,7 +26,7 @@ feature 'Admin view customer' do
   end
 
   scenario 'with no customer' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
+    user = create(:user)
 
     login_as(user, scope: :user)                     
     visit root_path
@@ -42,11 +36,10 @@ feature 'Admin view customer' do
   end
 
   scenario 'and view details' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
+    user = create(:user)
     cpf = CPF.generate
-    Customer.create!(name: 'José',
-                     document: cpf,
-                     email: 'teste@teste.com.br')
+    create(:customer, name: 'José', document: cpf,
+           email: 'teste@teste.com.br')
 
     login_as(user, scope: :user)                     
     visit root_path

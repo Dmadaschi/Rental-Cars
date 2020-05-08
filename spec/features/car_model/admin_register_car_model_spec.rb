@@ -2,12 +2,10 @@ require 'rails_helper'
 
 feature 'Admin register car model' do
   scenario 'successfully' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
-    fiat = Manufacturer.create!(name: 'Fiat')
-    hatch = CarCategory.create!(name: 'Hatch',
-                                daily_rate: '50', 
-                                car_insurance: '20',
-                                third_part_insurance: '20')
+    user = create(:user)
+    create(:manufacturer, name: 'Fiat')
+    create(:car_category, name: 'Hatch')
+
 
     login_as(user, scope: :user)                                
     visit root_path
@@ -32,7 +30,7 @@ feature 'Admin register car model' do
   end
 
   scenario 'with blank values' do
-    user = User.create!(email:'teste@teste.com', password: '12345678')
+    user = create(:user)
     login_as(user, scope: :user)
     visit root_path
     click_on 'Modelos de carro'

@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Validates rental access' do
   context 'Admin singed in and' do
     scenario 'view index' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
+      user = create(:user)
 
       login_as(user, scope: :user)
       visit rentals_path
@@ -13,7 +13,7 @@ feature 'Validates rental access' do
     end
 
     scenario 'view new' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
+      user = create(:user)
 
       login_as(user, scope: :user)
       visit new_rental_path

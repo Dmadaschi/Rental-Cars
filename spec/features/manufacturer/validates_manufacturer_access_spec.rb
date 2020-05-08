@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Validates manufacturer access' do
   context 'Admin singed in and' do
     scenario 'view index' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
+      user = create(:user)
 
       login_as(user, scope: :user)
       visit manufacturers_path
@@ -12,7 +12,7 @@ feature 'Validates manufacturer access' do
       expect(current_path).not_to eq(new_user_session_path)
     end
     scenario 'view new' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
+      user = create(:user)
 
       login_as(user, scope: :user)
       visit new_manufacturer_path
@@ -21,8 +21,8 @@ feature 'Validates manufacturer access' do
       expect(current_path).not_to eq(new_user_session_path)
     end
     scenario 'view edit' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
-      manufacturer = Manufacturer.create!(name: 'Fiat')
+      user = create(:user)
+     manufacturer = create(:manufacturer)
 
       login_as(user, scope: :user)
       visit edit_manufacturer_path(manufacturer)
@@ -31,8 +31,8 @@ feature 'Validates manufacturer access' do
       expect(current_path).not_to eq(new_user_session_path)
     end
     scenario 'view show' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
-      manufacturer = Manufacturer.create!(name: 'Fiat')
+      user = create(:user)
+     manufacturer = create(:manufacturer)
 
       login_as(user, scope: :user)
       visit manufacturer_path(manufacturer)
@@ -56,7 +56,7 @@ feature 'Validates manufacturer access' do
       expect(current_path).to eq(new_user_session_path)
     end
     scenario 'view edit' do
-      manufacturer = Manufacturer.create!(name: 'Fiat')
+     manufacturer = create(:manufacturer)
 
       visit edit_manufacturer_path(manufacturer)
 
@@ -64,7 +64,7 @@ feature 'Validates manufacturer access' do
       expect(current_path).to eq(new_user_session_path)
     end
     scenario 'view show' do
-      manufacturer = Manufacturer.create!(name: 'Fiat')
+     manufacturer = create(:manufacturer)
 
       visit manufacturer_path(manufacturer)
 

@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Validates car_model access' do
   context 'Admin singed in and' do
     scenario 'view index' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
+      user = create(:user)
 
       login_as(user, scope: :user)
       visit car_models_path
@@ -12,7 +12,7 @@ feature 'Validates car_model access' do
       expect(current_path).not_to eq(new_user_session_path)
     end
     scenario 'view new' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
+      user = create(:user)
 
       login_as(user, scope: :user)
       visit new_car_model_path

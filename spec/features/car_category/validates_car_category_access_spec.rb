@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Validates car_category access' do
   context 'Admin singed in and' do
     scenario 'view index' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
+      user = create(:user)
 
       login_as(user, scope: :user)
       visit car_categories_path
@@ -12,7 +12,7 @@ feature 'Validates car_category access' do
       expect(current_path).not_to eq(new_user_session_path)
     end
     scenario 'view new' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
+      user = create(:user)
 
       login_as(user, scope: :user)
       visit new_car_category_path
@@ -22,11 +22,8 @@ feature 'Validates car_category access' do
     end
 
     scenario 'view show' do
-      user = User.create!(email:'teste@teste.com', password: '12345678')
-      car_category = CarCategory.create!(name: 'A',
-                                         daily_rate: '50', 
-                                         car_insurance: '20',
-                                         third_part_insurance: '20')
+      user = create(:user)
+      car_category = create(:car_category)
 
       login_as(user, scope: :user)
       visit car_category_path(car_category)
@@ -50,10 +47,7 @@ feature 'Validates car_category access' do
     end
 
     scenario 'view show' do
-      car_category = CarCategory.create!(name: 'A',
-                                         daily_rate: '50', 
-                                         car_insurance: '20',
-                                         third_part_insurance: '20')
+      car_category = create(:car_category)
 
       visit car_category_path(car_category)
 
