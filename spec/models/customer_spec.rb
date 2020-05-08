@@ -22,13 +22,9 @@ RSpec.describe Customer, type: :model do
 
     it 'uniqueness' do
       cpf = CPF.generate
-      Customer.create!(name: 'Jorge',
-                       email: 'jorge@teste.com.br',
-                       document: cpf)
+      create(:customer, email: 'jorge@teste.com.br', document: cpf)
+      customer = build(:customer, email: 'jorge@teste.com.br', document: cpf)
 
-      customer = Customer.new(name: 'Jorge',
-                              email: 'jorge@teste.com.br',
-                              document: cpf)
       customer.save
 
       expect(customer.errors[:email]).to include("já está em uso")
@@ -36,9 +32,8 @@ RSpec.describe Customer, type: :model do
     end
 
     it 'invalid cpf' do
-      customer = Customer.new(name: 'Jorge',
-                              email: 'jorge@teste.com.br',
-                              document: '999999999999')
+      customer = build(:customer, document: '999999999999')
+      
       customer.save
 
       expect(customer.errors[:document]).to include("Digite um CPF valido")

@@ -21,18 +21,16 @@ RSpec.describe Subsidiary, type: :model do
 
     it 'uniqueness' do
       cnpj = CNPJ.generate
-      Subsidiary.create!(name: 'Paulista', cnpj: cnpj, address: 'Av Paulista')
-      subsidiary = Subsidiary.new(name: 'Paulista', cnpj: cnpj)
+      create(:subsidiary, name: 'Paulista', cnpj: cnpj)
+      subsidiary = build(:subsidiary, name: 'Paulista', cnpj: cnpj)
       subsidiary.save
-
+      
       expect(subsidiary.errors[:name]).to include('já está em uso')
       expect(subsidiary.errors[:cnpj]).to include('já está em uso')
     end
 
     it 'invalid cnpj' do
-      subsidiary = Subsidiary.new(name: 'Paulista',
-                                  cnpj: '1111111111',
-                                  address: 'Av Paulista')
+      subsidiary = build(:subsidiary, cnpj: '1111111111')
       subsidiary.save
 
       expect(subsidiary.errors[:cnpj]).to include('Digite um CNPJ valido')

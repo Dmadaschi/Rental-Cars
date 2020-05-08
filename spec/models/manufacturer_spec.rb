@@ -18,8 +18,8 @@ describe Manufacturer, type: :model do
       expect(manufacturer.errors[:name]).to include("não pode ficar em branco")
     end
     it 'uniqueness' do
-      Manufacturer.create!(name: 'Fiat')
-      manufacturer = Manufacturer.new(name: 'Fiat')
+      create(:manufacturer, name: 'Fiat')
+      manufacturer = build(:manufacturer, name: 'Fiat')
 
       manufacturer.save
 

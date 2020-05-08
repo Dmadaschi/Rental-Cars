@@ -29,25 +29,17 @@ RSpec.describe CarCategory, type: :model do
     end
 
     it 'uniqueness' do
-      CarCategory.create!(name: 'A',
-                          daily_rate: '50', 
-                          car_insurance: '20',
-                          third_part_insurance: '20')
+      create(:car_category, name: 'A')
+      car_category = build(:car_category, name: 'A')
 
-      car_category = CarCategory.new(name: 'A',
-                                     daily_rate: '10',
-                                     car_insurance: '10',
-                                     third_part_insurance: '10')
       car_category.save
 
       expect(car_category.errors[:name]).to include("já está em uso")
     end
 
     it 'greater_than' do
-      car_category = CarCategory.new(name: 'A',
-                                     daily_rate: '0',
-                                     car_insurance: '0',
-                                     third_part_insurance: '0')
+      car_category = build(:car_category, daily_rate: '0',
+                           car_insurance: '0', third_part_insurance: '0')
       car_category.save                               
 
       expect(car_category.errors[:daily_rate]).to include("deve ser maior que 0")
