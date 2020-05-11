@@ -13,7 +13,7 @@ class RentalsController < ApplicationController
   def create
     @rental = Rental.new(rental_params)
     return successfully_created if @rental.save
-    
+
     set_collections
     render :new
   end
@@ -23,7 +23,7 @@ class RentalsController < ApplicationController
     car_models = @rental.car_category.car_models
     @available_cars = Car.where(car_model: car_models)
     @car_rental = @rental.build_car_rental
-    @rental.ongoing! 
+    @rental.ongoing!
     # @car_rental.car.status = 'rented'
   end
 
@@ -55,4 +55,3 @@ class RentalsController < ApplicationController
                                    :customer_id, :car_category_id)
   end
 end
-  

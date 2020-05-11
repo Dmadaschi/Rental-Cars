@@ -4,7 +4,7 @@ class CarModelsController < ApplicationController
   def index
     @car_models = CarModel.all
   end
-  
+
   def new
     @car_model = CarModel.new
     set_collections
@@ -13,7 +13,7 @@ class CarModelsController < ApplicationController
   def create
     @car_model = CarModel.new(car_model_params)
     return successfully_created if @car_model.save
-    
+
     set_collections
     render :new
   end

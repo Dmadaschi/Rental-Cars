@@ -21,9 +21,14 @@ Rails.application.routes.draw do
     resources :car_rentals, only: [:create]
     collection do
       get :search
-    end 
+    end
     member do
       get :start
+    end
+  end
+  namespace :api do
+    namespace :v1 do
+      resources :cars, only: :index
     end
   end
 end

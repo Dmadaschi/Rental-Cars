@@ -21,10 +21,10 @@ class ManufacturersController < ApplicationController
     render :new
   end
 
-  def update   
+  def update
     return successfully_updated if @manufacturer
                                     .update(manufacturer_params)
-    
+
     render :edit
   end
 

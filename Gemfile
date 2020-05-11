@@ -40,6 +40,8 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.4'
   gem 'shoulda-matchers', '~> 4.3'
   gem 'factory_bot_rails'
+  gem 'rubocop', '~> 0.83.0', require: false
+  gem 'faker', github: 'faker-ruby/faker'
 end
 
 group :development do

@@ -24,7 +24,7 @@ class SubsidiariesController < ApplicationController
   def update
     return successfully_updated if @subsidiary
                                     .update(subsidiary_params)
-    
+
     render :edit
   end
 
