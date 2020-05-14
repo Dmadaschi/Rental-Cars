@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'car management' do
-  context 'index' do
+  context '#index' do
     it 'renders available cars' do
       cars = create_list(:car, 3, status: :available)
       rented_cars = create_list(:car, 3, status: :rented)
@@ -36,6 +36,37 @@ describe 'car management' do
       expect(response).to have_http_status(:ok)
       expect(response.content_type).to include('application/json')
       expect(response_json).to be_blank
+    end
+  end
+
+  context '#show' do
+    context 'record exists' do
+      let(:car) { create(:car) }
+
+      before { get api_v1_car_path(car.id) }
+
+      it 'return status code' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'return status car' do
+        response_json = JSON.parse(response.body, symbolize_names: true)
+        expect(response.content_type).to include('application/json')
+        expect(response_json[:id]).to eq(car.id)
+        expect(response_json[:license_plate]).to eq(car.license_plate)
+        expect(response_json[:color]).to eq(car.color)
+        expect(response_json[:car_model_id]).to eq(car.car_model_id)
+        expect(response_json[:mileage]).to eq(car.mileage)
+        expect(response_json[:status]).to eq(car.status)
+      end
+    end
+
+    context 'when record exists' do
+      before { get api_v1_car_path(id: 0000) }
+
+      it 'return status code 404' do
+        expect(response).to have_http_status(:not_found)
+      end
     end
   end
 end
