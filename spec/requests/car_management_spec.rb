@@ -67,6 +67,39 @@ describe 'car management' do
       it 'return status code 404' do
         expect(response).to have_http_status(:not_found)
       end
+
+      it 'return not found message' do
+        expect(response.body).to include('Carro não encontrado')
+      end
+    end
+  end
+
+  context '#create' do
+    context 'with valid parameters' do
+      let(:car_model) { create(:car_model) }
+      let(:attributes) { attributes_for :car, car_model_id: car_model.id }
+
+      before { post api_v1_cars_path, params: { car: attributes } }
+
+      it 'returns status 201' do
+        expect(response).to have_http_status(:created)
+      end
+
+      it 'creates a car' do
+        car = JSON.parse(response.body, symbolize_names: true)
+        expect(car[:license_plate]).to eq(attributes[:license_plate])
+        expect(car[:color]).to eq(attributes[:color])
+        expect(car[:mileage]).to eq(attributes[:mileage])
+        expect(car[:car_model_id]).to eq(attributes[:car_model_id])
+      end
+    end
+
+    context 'with invalid parameters' do
+      it 'returns missing parameters messages' do
+        post api_v1_cars_path, params: { car: {} }
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.body).to include('Parâmetros invalidos')
+      end
     end
   end
 end
