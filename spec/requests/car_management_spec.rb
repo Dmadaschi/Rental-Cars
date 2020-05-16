@@ -96,9 +96,20 @@ describe 'car management' do
 
     context 'with invalid parameters' do
       it 'returns missing parameters messages' do
-        post api_v1_cars_path, params: { car: {} }
+        post api_v1_cars_path, params: {}
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.body).to include('Parâmetros invalidos')
+      end
+    end
+
+    context 'with invalid parameters' do
+      it 'returns validation messages' do
+        post api_v1_cars_path, params: { car: { foo: 'bar' } }
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.body).to include('Placa não pode ficar em branco')
+        expect(response.body).to include('Modelo é obrigatório')
+        expect(response.body).to include('Milhagem não pode ficar em branco')
+        expect(response.body).to include('Cor não pode ficar em branco')
       end
     end
   end
