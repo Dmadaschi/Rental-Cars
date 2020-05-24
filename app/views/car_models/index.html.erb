@@ -1,14 +1,14 @@
 <% if @car_models.blank? %>
-  <h1>Nenhum modelo de carro cadastrado</h1>
+  <h1><%= t('.blank_car_models') %></h1>
 <%else%>
   <table>
     <tr>
-      <th>Modelo</th>
-      <th>Ano</th>
-      <th>Motor</th>
-      <th>Combústivel</th>
-      <th>Fabricante</th>
-      <th>Categoria</th>
+      <th><%= @car_models.model_name.human count: 2 %></th>
+      <th><%= @car_models.human_attribute_name :year %></th>
+      <th><%= @car_models.human_attribute_name :motorization %></th>
+      <th><%= @car_models.human_attribute_name :fuel_type %></th>
+      <th><%= @car_models.human_attribute_name :manufacturer %></th>
+      <th><%= @car_models.human_attribute_name :car_category %></th>
     </tr>
     <% @car_models.each do |car_model|%>
       <tr>
@@ -23,6 +23,6 @@
   </table>
 <% end %>
 
-<h2><%=link_to 'Registrar novo modelo', new_car_model_path%></h2>
+<h2><%=link_to t('.new_car_model'), new_car_model_path%></h2>
 
-<h2><%=link_to 'Voltar', root_path%></h2>
+<h2><%=link_to t('.back'), root_path%></h2>

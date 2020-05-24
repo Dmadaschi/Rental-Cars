@@ -1,7 +1,9 @@
 pt-BR:
   activerecord:
     models:
-      subsidiary: Filial
+      subsidiary: 
+        one: Filial
+        other: Filiais
     attributes:
       subsidiary:
         name: Nome

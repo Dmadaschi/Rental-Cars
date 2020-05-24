@@ -1,7 +1,9 @@
 pt-BR:
   activerecord:
     models:
-      manufacturer: Fabricante
+      manufacturer: 
+        one: Fabricante
+        other: Fabricantes
     attributes:
       manufacturer:
         name: Nome

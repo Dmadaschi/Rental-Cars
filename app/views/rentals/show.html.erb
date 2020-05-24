@@ -1,8 +1,8 @@
 <dl>
-  <dt>Código</dt>
+  <dt><%= Rental.human_attribute_name :code %></dt>
   <dd><%= @rental.code%></dd>
-  <dt>Categoria</dt>
+  <dt><%= Rental.human_attribute_name :car_category %></dt>
   <dd><%= @rental.car_category.name%></dd>
-  <dt>Status</dt>
+  <dt><%= Rental.human_attribute_name :status %></dt>
   <dd><%= t @rental.status%></dd>
 </dl>

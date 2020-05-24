@@ -1,0 +1,8 @@
+pt-BR:
+  car_models:
+    form:
+      submit: Enviar
+    index:
+      blank_car_models: Nenhum modelo de carro cadastrado
+      new_car_model: Registrar novo modelo
+      back: Voltar

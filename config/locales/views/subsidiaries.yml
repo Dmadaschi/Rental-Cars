@@ -1,0 +1,10 @@
+pt-BR:
+  subsidiaries:
+    index:
+      blank_subisidiaries: Nenhuma filial cadastrada
+      new_subsidiaries: Registrar nova filial
+      back: Voltar
+    show:
+      back: Voltar
+      edit: Editar
+      delete: Apagar filial

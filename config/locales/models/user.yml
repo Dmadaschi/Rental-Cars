@@ -1,7 +1,9 @@
 pt-BR:
   activerecord:
     models:
-      user: Usuario
+      user: 
+        one: Usúario
+        other: Usúarios
     attributes:
       user:
         email: Email

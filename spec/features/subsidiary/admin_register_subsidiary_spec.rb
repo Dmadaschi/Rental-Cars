@@ -7,7 +7,8 @@ feature 'Admin register Subsisiary' do
     visit root_path
     click_on 'Filiais'
 
-    expect(page).to have_link('Registrar nova filial', href: new_subsidiary_path)
+    expect(page).to have_link('Registrar nova filial',
+                              href: new_subsidiary_path)
   end
 
   scenario 'successfully' do
@@ -43,7 +44,7 @@ feature 'Admin register Subsisiary' do
     fill_in 'CNPJ', with: '01.290.370/0001-73'
     fill_in 'Endereço', with: 'Av dos testes numero 100'
     click_on 'Enviar'
-    
+
     expect(page).to have_content('Nome já está em uso')
   end
 end

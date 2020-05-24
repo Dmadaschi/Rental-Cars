@@ -1,0 +1,6 @@
+pt-BR:
+  layouts:
+    application:
+      title: Rental Cars
+      login: Entrar
+      log_out: Log out

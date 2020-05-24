@@ -1,11 +1,9 @@
 <% if @manufacturers.blank? %>
-  <h1>Nenhum fabricante cadastrado</h1>
+  <h1><%= t('.blank_manufacturers') %></h1>
 <% end %>
 
 <h2><%= render @manufacturers %></h2>
 
-<h2><%=link_to 'Registrar novo fabricante', new_manufacturer_path%></h2>
+<h2><%=link_to t('.new_manufacturer'), new_manufacturer_path%></h2>
 
-<h2><%=link_to 'Voltar', root_path%></h2>
-
-
+<h2><%=link_to t('.back'), root_path%></h2>

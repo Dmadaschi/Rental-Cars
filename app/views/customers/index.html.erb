@@ -1,15 +1,15 @@
 <% if @customers.blank? %>
-  <h1>Nenhum cliente cadastrado</h1>
+  <h1><%= t('.blank_customers') %></h1>
 <% end %>
 
 <div>
   <%= form_with url: search_customers_path, local: true, method: :get do |f|%>
-    <%= f.label :search, 'Busca' %>
+    <%= f.label :search, t('.search') %>
     <%= f.search_field :search %>
-    <%= f.submit 'Pesquisar' %>
+    <%= f.submit t('.submit') %>
   <% end %>
 </div>
 
 <h2><%= render @customers %></h2>
 
-<h2><%=link_to 'Registrar novo cliente', new_customer_path%></h2>
+<h2><%=link_to t('.new_customer'), new_customer_path%></h2>

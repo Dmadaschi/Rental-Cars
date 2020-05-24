@@ -1,0 +1,6 @@
+pt-BR:
+  manufacturers:
+    index:
+      blank_manufacturers: Nenhum fabricante cadastrado
+      new_manufacturer: Registrar novo fabricante
+      back: Voltar

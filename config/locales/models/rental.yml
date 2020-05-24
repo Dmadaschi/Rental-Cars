@@ -3,7 +3,9 @@ pt-BR:
   on_going: Iniciada
   activerecord:
     models:
-      rental: Locação
+      rental: 
+       one: Locação
+       other: Locações
     attributes:
       rental:
         start_date: Data de inicio

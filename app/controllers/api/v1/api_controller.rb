@@ -7,7 +7,7 @@ class Api::V1::ApiController < ActionController::API
 
   def record_not_found(exeption)
     model_name = exeption.model.constantize.model_name.human
-    render json: "Carro não encontrado", status: :not_found
+    render json: "#{model_name} não encontrado", status: :not_found
   end
 
   def parameters_missing

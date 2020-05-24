@@ -1,21 +1,21 @@
 <div>
   <%= form_with url: search_rentals_path, local: true, method: :get do |f|%>
-    <%= f.label :code, 'Busca' %>
+    <%= f.label :code, t('.search') %>
     <%= f.search_field :code %>
-    <%= f.submit 'Pesquisar' %>
+    <%= f.submit t('.find') %>
   <% end %>
 </div>
 <% if @rentals.blank? %>
-  <h1>Nenhuma locação cadastrado</h1>
+  <h1><%= t('.blank_rentals') %></h1>
 <% else %>
   <div>
     <table>
       <tr>
-        <th>Código</th>
-        <th>Data de inicio</th>
-        <th>Data final</th>
-        <th>Cliente</th>
-        <th>Categoria</th>
+        <th><%= Rental.human_attribute_name :code %></th>
+        <th><%= Rental.human_attribute_name :start_date %></th>
+        <th><%= Rental.human_attribute_name :end_date %></th>
+        <th><%= Rental.human_attribute_name :customer %></th>
+        <th><%= Rental.human_attribute_name :car_category %></th>
       </tr>
       <% @rentals.each do |rental| %>
         <tr>
@@ -29,4 +29,4 @@
     </table>
   </div>
 <% end %>
-<%= link_to 'Registrar nova locação', new_rental_path %>
+<%= link_to t('.new_rental'), new_rental_path %>

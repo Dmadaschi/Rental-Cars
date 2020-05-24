@@ -1,8 +1,8 @@
-<h1>Confirmar Início de Locação</h1>
+<h1><%= t('.confirm') %></h1>
 <dl>
-  <dt>Código</dt>
+  <dt><%= Rental.human_attribute_name :code %></dt>
   <dd><%= @rental.code %>
-  <dt>Categoria</dt>
+  <dt><%= t('.category') %></dt>
   <dd><%= @rental.car_category.name %></dd>
 </dl>
 <%= form_with(model: [@rental, @car_rental], local: true) do |f|%>

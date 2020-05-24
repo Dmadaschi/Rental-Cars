@@ -1,0 +1,12 @@
+pt-BR:
+  rentals:
+    index:
+      search: Buscar
+      find: Pesquisar
+      blank_rentals: Nenhuma locação cadastrado
+      new_rental: Registrar nova locação
+    new:
+      submit: Enviar
+    start:
+      confirm: Confirmar inicio da locação
+      category: Categoria

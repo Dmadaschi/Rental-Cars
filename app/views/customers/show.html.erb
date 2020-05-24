@@ -1,12 +1,12 @@
 <h1><%= @customer.name %></h1>
-<h2>CPF: <%= @customer.document %></h2>
-<h2>Email: <%= @customer.email %></h2>
+<h2><%= t('.document') %>: <%= @customer.document %></h2>
+<h2><%= t('.email') %>: <%= @customer.email %></h2>
 
-<h1>Agendamentos</h1>
+<h1><%= t('.schedules') %></h1>
 <% @customer.rentals.scheduled.each do |rental| %>
   <div>
-    <h2>Código: <%= rental.code%><h2>
-    <h3>Categoria <%= rental.car_category.name%></h2>
+    <h2><%= t('.code') %>: <%= rental.code%><h2>
+    <h3><%= t('.category') %> <%= rental.car_category.name%></h2>
     <h3><%= link_to 'Iniciar Locação', start_rental_path(rental.id) %></h2>
   </div>
 <%end%>

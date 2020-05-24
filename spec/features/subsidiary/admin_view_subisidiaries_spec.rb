@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Visitor view subsidiarys' do
+feature 'Visitor view subsidiaries' do
   scenario 'successfully' do
     user = create(:user)
     create(:subsidiary, name: 'Sede')
@@ -35,7 +35,7 @@ feature 'Visitor view subsidiarys' do
     )
   end
 
-  scenario 'and no subsidiarys are created' do
+  scenario 'and no subsidiaries are created' do
     user = create(:user)
     login_as(user, scope: :user)
     visit root_path
@@ -54,7 +54,7 @@ feature 'Visitor view subsidiarys' do
     expect(current_path).to eq root_path
   end
 
-  scenario 'and return to subsidiarys page' do
+  scenario 'and return to subsidiaries page' do
     user = create(:user)
     create(:subsidiary, name: 'Sede')
 

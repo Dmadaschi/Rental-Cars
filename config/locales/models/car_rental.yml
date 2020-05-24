@@ -1,7 +1,9 @@
 pt-BR:
   activerecord:
     models:
-      car_rental: Locação do Carro
+      car_rental: 
+      one: Locação do Carro
+      other: Locações de carros
     attributes:
       car_rental:
         rental: Locação

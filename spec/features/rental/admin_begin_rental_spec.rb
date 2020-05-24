@@ -73,7 +73,7 @@ feature 'Admin begin rental' do
     expect(current_path).to eq rental_path(rental.id)
     expect(page).to have_content 'Status Iniciada'
     expect(page).to have_content 'Fulano Sicrano'
-    expect(page).to have_content "Horário da Retirada: 01/05/2020 13:00:00"
+    expect(page).to have_content 'Horário da Retirada: 01/05/2020 13:00:00'
     expect(page).to have_content 'Usuário Responsável: test@test.com'
     expect(page).to have_content 'Carro Retirado: Fiat Mobi - Placa: ABC-1234 - Cor: Azul'
     expect(page).to have_content 'Valor da Diária: R$ 100,00'

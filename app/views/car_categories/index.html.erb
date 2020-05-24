@@ -1,9 +1,9 @@
 <% if @car_categories.blank? %>
-  <h1>Nenhuma categoria de carro cadastrada</h1>
+  <h1><%= t('.blank_car_categories')%></h1>
 <% end %>
 
 <%= render @car_categories %>
 
-<h4><%= link_to 'Registrar nova categoria de carro', new_car_category_path %></h4>
+<h4><%= link_to t('.new_car_category'), new_car_category_path %></h4>
 
-<h2><%=link_to 'Voltar', root_path%></h2>
+<h2><%=link_to t('.back'), root_path%></h2>

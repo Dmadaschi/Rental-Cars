@@ -1,0 +1,16 @@
+pt-BR:
+  customers:
+    form:
+      submit: Enviar
+    index:
+      blank_customers: Nenhum cliente cadastrado
+      new_customer: Registrar novo cliente
+      search: Buscar
+      submit: Pesquisar
+    show:
+      back: Voltar
+      document: CPF
+      email: Email
+      code: Código
+      category: Categoria
+      schedules: Agendamentos

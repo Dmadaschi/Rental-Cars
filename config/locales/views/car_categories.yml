@@ -1,0 +1,14 @@
+pt-BR:
+  car_categories:
+    form:
+      submit: Enviar
+    index:
+      blank_car_categories: Nenhuma categoria de carro cadastrada
+      new_car_category: Registrar nova categoria de carro
+      back: Voltar
+    show:
+      category: Categoria
+      back: Voltar
+      car_insurance: Seguro
+      third_part_insurance: Seguro para terceiros
+      daily_rate: Diária
