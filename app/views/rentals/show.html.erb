@@ -1,8 +1,28 @@
 <dl>
   <dt><%= Rental.human_attribute_name :code %></dt>
-  <dd><%= @rental.code%></dd>
-  <dt><%= Rental.human_attribute_name :car_category %></dt>
-  <dd><%= @rental.car_category.name%></dd>
+  <dd><%= @rental.code %>
+  <dt><%= CarCategory.human_attribute_name :name %></dt>
+  <dd><%= @rental.car_category.name %></dd>
   <dt><%= Rental.human_attribute_name :status %></dt>
-  <dd><%= t @rental.status%></dd>
+  <dd><%= I18n.translate @rental.status %>
+  <dt><%= Rental.human_attribute_name :customer %></dt>
+  <dd><%= @rental.customer.name %>
 </dl>
+
+<% if @rental.ongoing? %>
+  <h2> Dados da Locação </h2>
+  <dl>
+    <dt>Horário da Retirada:</dt>
+    <dd><%= I18n.localize @rental.car_rental.start_date, format: :custom %></dd>
+    <dt>Usuário Responsável:</dt>
+    <dd><%= @rental.car_rental.user.email %>
+    <dt>Carro Retirado:</dt>
+    <dd><%= @rental.car_rental.car.description %>
+    <dt>Valor da Diária:</dt>
+    <dd><%= number_to_currency @rental.car_rental.daily_rate %>
+  </dl>
+  <h2>Acessórios Contratados</h2>
+  <% @rental.car_rental.add_ons.each do |add_on| %>
+    <%= add_on.name%>
+  <% end %>
+<% end %>

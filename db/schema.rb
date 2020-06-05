@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_204454) do
+ActiveRecord::Schema.define(version: 2020_06_05_203330) do
+
+  create_table "add_on_car_rentals", force: :cascade do |t|
+    t.integer "add_on_id", null: false
+    t.integer "car_rental_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["add_on_id"], name: "index_add_on_car_rentals_on_add_on_id"
+    t.index ["car_rental_id"], name: "index_add_on_car_rentals_on_car_rental_id"
+  end
+
+  create_table "add_ons", force: :cascade do |t|
+    t.string "name"
+    t.decimal "daily_rate"
+    t.string "serial_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "car_categories", force: :cascade do |t|
     t.string "name"
@@ -107,6 +124,8 @@ ActiveRecord::Schema.define(version: 2020_05_06_204454) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "add_on_car_rentals", "add_ons"
+  add_foreign_key "add_on_car_rentals", "car_rentals"
   add_foreign_key "car_models", "car_categories"
   add_foreign_key "car_models", "manufacturers"
   add_foreign_key "car_rentals", "cars"

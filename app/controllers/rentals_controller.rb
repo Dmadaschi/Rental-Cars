@@ -5,6 +5,10 @@ class RentalsController < ApplicationController
     @rentals = Rental.all
   end
 
+  def show
+    @rental = Rental.find(params[:id])
+  end
+
   def new
     @rental = Rental.new
     set_collections
@@ -22,9 +26,8 @@ class RentalsController < ApplicationController
     @rental = Rental.find(params[:id])
     car_models = @rental.car_category.car_models
     @available_cars = Car.where(car_model: car_models)
-    @car_rental = @rental.build_car_rental
-    @rental.ongoing!
-    # @car_rental.car.status = 'rented'
+    @add_ons = AddOn.all
+    @car_rental = CarRental.new(rental: @rental)
   end
 
   def search

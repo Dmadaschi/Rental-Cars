@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe CarRental, type: :model do
   context 'validations' do
     it { should validate_presence_of(:daily_rate) }
-    it { should validate_presence_of(:car_insurance) }
-    it { should validate_presence_of(:third_part_insurance) }
   end
   context 'references' do
     it { should belong_to(:car) }
@@ -19,8 +17,6 @@ RSpec.describe CarRental, type: :model do
       car_rental.save
 
       expect(car_rental.errors[:daily_rate]).to include('não pode ficar em branco')
-      expect(car_rental.errors[:car_insurance]).to include('não pode ficar em branco')
-      expect(car_rental.errors[:third_part_insurance]).to include('não pode ficar em branco')
       expect(car_rental.errors[:rental]).to include('é obrigatório(a)')
       expect(car_rental.errors[:user]).to include('é obrigatório(a)')
       expect(car_rental.errors[:car]).to include('é obrigatório(a)')

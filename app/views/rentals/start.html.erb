@@ -8,5 +8,6 @@
 <%= form_with(model: [@rental, @car_rental], local: true) do |f|%>
   <%= f.label :car_id %>
   <%= f.collection_select :car_id, @available_cars, :id, :description %>
+  <%= f.collection_check_boxes :add_on_ids, @add_ons, :id, :name %>
   <%= f.submit 'Confirmar' %>
 <% end %>

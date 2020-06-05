@@ -1,6 +1,6 @@
 pt-BR:
   scheduled: Agendada
-  on_going: Iniciada
+  ongoing: Iniciada
   activerecord:
     models:
       rental: 
