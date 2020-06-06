@@ -1,0 +1,12 @@
+<dl>
+  <dt><%= Car.human_attribute_name :car_model %></dt>
+  <dd><%= @car.car_model.description %></dd>
+  <dt><%= Car.human_attribute_name :license_plate %></dt>
+  <dd><%= @car.license_plate %></dd>
+  <dt><%= Car.human_attribute_name :mileage %></dt>
+  <dd><%= "#{@car.mileage} km" %></dd>
+  <dt><%= Car.human_attribute_name :color %></dt>
+  <dd><%= @car.color %></dd>
+  <dt><%= Car.human_attribute_name :status %></dt>
+  <dd><%= @car.status %></dd>
+</dl>

@@ -1,0 +1,11 @@
+<%= form_with model: @car do |f|%>
+  <%= f.label :car_model_id%>
+  <%= f.collection_select :car_model_id, @car_models, :id, :description %>
+  <%= f.label :license_plate %>
+  <%= f.text_field :license_plate %>
+  <%= f.label :mileage %>
+  <%= f.text_field :mileage %>
+  <%= f.label :color %>
+  <%= f.text_field :color %>
+  <%= f.submit t '.submit'%>
+<% end %>

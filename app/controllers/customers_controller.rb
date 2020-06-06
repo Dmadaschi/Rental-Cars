@@ -27,7 +27,7 @@ class CustomersController < ApplicationController
     flash[:notice] = "Resultado da busca por: #{search_query}"
     render :index
   end
-  
+
   private
 
   def successfully_created

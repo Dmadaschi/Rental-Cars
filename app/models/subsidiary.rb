@@ -3,7 +3,7 @@ class Subsidiary < ApplicationRecord
   validates :name, :cnpj, :address, presence: true
   validates :name, :cnpj, uniqueness: true
   validate :valid_cnpj
-  
+
   private
 
   def valid_cnpj 

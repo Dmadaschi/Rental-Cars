@@ -26,6 +26,8 @@
         <h4><%= link_to (Rental.model_name.human), rentals_path %></h4>
   
         <h4><%= link_to (CarModel.model_name.human(count:2)), car_models_path %></h4>
+
+        <h4><%= link_to (Car.model_name.human(count:2)), cars_path %></h4>
       <%else%>
         <h4><%= link_to t('.login'), new_user_session_path %></h4>
       <%end%>

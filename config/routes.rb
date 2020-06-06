@@ -26,6 +26,9 @@ Rails.application.routes.draw do
       get :start
     end
   end
+
+  resources :cars, only: %i[index new create show]
+
   namespace :api do
     namespace :v1 do
       resources :cars, only: %i[index show create]

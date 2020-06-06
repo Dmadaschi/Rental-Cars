@@ -1,0 +1,6 @@
+pt-BR:
+  cars:
+    index:
+      new_car: Registrar novo veiculo para frota
+    new:
+      submit: Enviar

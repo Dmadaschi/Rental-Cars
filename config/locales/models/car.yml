@@ -1,7 +1,11 @@
 pt-BR:
+  available: Disponivel
+  rented: Alugado
   activerecord:
     models:
-      car: Carro
+      car: 
+        one: Veiculo
+        other: Veiculos
     attributes:
       car:
         car_model_id: Modelo
@@ -9,5 +13,3 @@ pt-BR:
         mileage: Milhagem
         license_plate: Placa
         color: Cor
-
-
