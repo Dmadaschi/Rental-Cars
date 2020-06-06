@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :add_on do
-    name { "MyString" }
-    daily_rate { "9.99" }
-    serial_number { "MyString" }
+    sequence(:name) { |n| "#{n}MyString" }
+    sequence(:daily_rate) { |n| "1.#{n}" }
+    sequence(:serial_number) { |n| "MyString#{n}" }
   end
 end
