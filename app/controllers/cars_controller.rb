@@ -10,6 +10,7 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     return successfully_created if @car.save
 
+    @car_models = CarModel.all
     render :new
   end
 

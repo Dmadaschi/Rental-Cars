@@ -24,4 +24,19 @@ feature 'Admin register cars' do
     #expect(page).to have_content('Disponivel')
     expect(page).to have_content('Carro cadastrado com sucesso')
   end
+
+  scenario 'with blank values' do
+    user = create(:user)
+
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Veiculos'
+    click_on 'Registrar novo veiculo para frota'
+    click_on 'Enviar'
+
+    expect(page).to have_content('Placa não pode ficar em branco')
+    expect(page).to have_content('Milhagem não pode ficar em branco')
+    expect(page).to have_content('Cor não pode ficar em branco')
+    expect(page).to_not have_content('Carro cadastrado com sucesso')
+  end
 end
