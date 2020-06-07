@@ -31,6 +31,16 @@ RSpec.describe Car, type: :model do
 
       expect(car.errors[:mileage]).to include('não é um número')
     end
+
+    it 'uniqueness' do
+      create(:car, license_plate: 'ABC-123')
+
+      car = build(:car, license_plate: 'ABC-123')
+
+      car.save
+
+      expect(car.errors[:license_plate]).to include('já está em uso')
+    end
   end
 
   context 'methods' do
@@ -38,8 +48,8 @@ RSpec.describe Car, type: :model do
       manufacturer = create(:manufacturer, name: 'Fiat')
       car_model = create(:car_model, name: 'Uno', manufacturer: manufacturer)
       car = create(:car, license_plate: 'XAB-4534',
-                   mileage: 1000, color: 'Preto', car_model: car_model)
-    
+                         mileage: 1000, color: 'Preto', car_model: car_model)
+
       expect(car.description).to eq('Fiat Uno - Placa: XAB-4534 - Cor: Preto')
     end
   end

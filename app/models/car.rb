@@ -4,7 +4,8 @@ class Car < ApplicationRecord
 
   validates :license_plate, :mileage, :color, presence: true
   validates :mileage, numericality: true
-  before_save :define_status
+  validates :license_plate, uniqueness: true
+  before_create :define_availability
 
   enum status: { available: 0, rented: 5 }
 
@@ -14,7 +15,7 @@ class Car < ApplicationRecord
 
   private
 
-  def define_status
+  def define_availability
     self.status = 'available'
   end
 end

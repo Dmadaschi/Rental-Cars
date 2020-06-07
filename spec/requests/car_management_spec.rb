@@ -69,7 +69,7 @@ describe 'car management' do
       end
 
       it 'return not found message' do
-        expect(response.body).to include('Carro não encontrado')
+        expect(response.body).to include('Veiculo não encontrado')
       end
     end
   end

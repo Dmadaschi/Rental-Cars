@@ -44,24 +44,17 @@ feature 'Admin begin rental' do
   end
 
   scenario 'successfully' do
-    user = User.create!(email: 'test@test.com', password: '12345678')
-    car_category = CarCategory.create!(name: 'A', daily_rate: 100,
-                                       car_insurance: 100, 
-                                       third_part_insurance: 100)
+    user = create(:user, email: 'test@test.com')
+    car_category = create(:car_category, daily_rate: 100)
+    fiat = create(:manufacturer, name: 'Fiat')
+    mobi = create(:car_model, name: 'Mobi', manufacturer: fiat,
+                              car_category: car_category)
 
-    fiat = Manufacturer.create!(name: 'Fiat')
+    car = create(:car, car_model: mobi,
+                       license_plate: 'ABC-1234', color: 'Azul')
+    customer = create(:customer, name: 'Fulano Sicrano')
 
-    mobi = CarModel.create!(name: 'Mobi', manufacturer: fiat,
-                            car_category: car_category, year: '2018',
-                            motorization: '38 cv', fuel_type: 'flex')
-
-    car = Car.create(car_model: mobi, license_plate: 'ABC-1234',
-                     mileage: 1000, color: 'Azul')
-    customer = Customer.create!(name: 'Fulano Sicrano', document: CPF.generate,
-                                email: 'teste@teste.com.br')
-
-    rental = Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030',
-                            customer: customer, car_category: car_category)
+    rental = create(:rental, customer: customer, car_category: car_category)
 
     login_as(user, scope: :user)
     visit start_rental_path(rental.id)
