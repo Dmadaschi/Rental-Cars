@@ -2,5 +2,8 @@ pt-BR:
   cars:
     index:
       new_car: Registrar novo veiculo para frota
+      blank_cars: Nenhum veiculo cadastrado
+      back: Voltar
+      details: Detalhes
     new:
       submit: Enviar

@@ -13,7 +13,7 @@
   <h2> Dados da Locação </h2>
   <dl>
     <dt>Horário da Retirada:</dt>
-    <dd><%= I18n.localize @rental.car_rental.start_date, format: :custom %></dd>
+    <dd><%= l(@rental.car_rental.start_date, format: :custom) %></dd>
     <dt>Usuário Responsável:</dt>
     <dd><%= @rental.car_rental.user.email %>
     <dt>Carro Retirado:</dt>

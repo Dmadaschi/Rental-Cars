@@ -21,7 +21,7 @@ feature 'Admin register cars' do
     expect(page).to have_content('ASF-123')
     expect(page).to have_content('1500 km')
     expect(page).to have_content('Azul')
-    #expect(page).to have_content('Disponivel')
+    expect(page).to have_content('Disponivel')
     expect(page).to have_content('Carro cadastrado com sucesso')
   end
 

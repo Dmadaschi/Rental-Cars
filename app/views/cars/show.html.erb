@@ -8,5 +8,5 @@
   <dt><%= Car.human_attribute_name :color %></dt>
   <dd><%= @car.color %></dd>
   <dt><%= Car.human_attribute_name :status %></dt>
-  <dd><%= @car.status %></dd>
+  <dd><%= I18n.translate @car.status %></dd>
 </dl>

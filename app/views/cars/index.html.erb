@@ -1,1 +1,27 @@
-<%= link_to t('.new_car'), new_car_path %>
+<div>
+  <% if @cars.blank? %>
+    <%= t '.blank_cars' %>
+  <% end %>
+</div>
+<div>
+  <table>
+    <th><%= CarModel.human_attribute_name :manufacturer %></th>
+    <th><%= Car.human_attribute_name :car_model %></th>
+    <th><%= CarModel.human_attribute_name :car_category %></th>
+    <th><%= Car.human_attribute_name :license_plate %></th>
+    <th><%= Car.human_attribute_name :status %></th>
+    <th></th>
+    <% @cars.each do |car| %>
+      <td><%= car.car_model.manufacturer.name %></td>
+      <td><%= car.car_model.name %></td>
+      <td><%= car.car_model.car_category.name %></td>
+      <td><%= car.license_plate %></td>
+      <td><%= I18n.translate car.status %></td>
+      <td><%= link_to t('.details'), car%><td>
+    <% end %>
+  </table>
+</div>
+<div>
+  <%= link_to t('.back'), root_path %>
+  <%= link_to t('.new_car'), new_car_path %>
+</div>
