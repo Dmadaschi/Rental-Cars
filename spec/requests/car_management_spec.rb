@@ -113,4 +113,68 @@ describe 'car management' do
       end
     end
   end
+
+  context '#status' do
+    context 'update car status' do
+      it 'and return status ok' do
+        car = create(:car)
+        car.rented!
+        car.save
+
+        patch status_api_v1_car_path car, status: 'available'
+
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'and return update car status' do
+        car = create(:car)
+        car.rented!
+        car.save
+
+        patch status_api_v1_car_path car, status: 'available'
+
+        car.reload
+
+        expect(car.status).to eq('available')
+      end
+
+      it 'and return car' do
+        car = create(:car)
+        car.rented!
+        car.save
+
+        patch status_api_v1_car_path car, status: 'available'
+
+        car.reload
+        car_params = JSON.parse(response.body, symbolize_names: true)
+        expect(car_params[:id]).to eq(car.id)
+        expect(car_params[:status]).to eq('available')
+      end
+
+      it 'with no car' do
+        patch status_api_v1_car_path '1', status: 'available'
+
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'with no params' do
+        car = create(:car)
+
+        patch status_api_v1_car_path car
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'with inexistent status' do
+        car = create(:car)
+
+        patch status_api_v1_car_path car, status: 'banana'
+
+        response_params = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response_params[:error]).to eq('O status informado não é valido')
+      end
+    end
+  end
 end
