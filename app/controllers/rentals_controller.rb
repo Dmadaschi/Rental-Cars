@@ -31,9 +31,10 @@ class RentalsController < ApplicationController
   end
 
   def search
-    @rentals = [Rental.find_by_code(params[:code])]
-    rental_not_found if @rentals.first.blank?
-    render :index
+    @rental = Rental.find_by_code(params[:code])
+    return rental_not_found if @rental.nil?
+
+    render :show
   end
 
   private
@@ -41,6 +42,7 @@ class RentalsController < ApplicationController
   def rental_not_found
     flash[:notice] = "Nenhuma locação encontrada com este código"
     @rentals = Rental.all
+    render :index
   end
 
   def set_collections

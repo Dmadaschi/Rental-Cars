@@ -9,3 +9,6 @@ pt-BR:
         name: Nome
         document: CPF
         email: Email
+        driver_license: CNH
+        phone: Telefone
+        birth_date: Data de nascimento

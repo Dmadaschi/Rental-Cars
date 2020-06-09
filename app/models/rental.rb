@@ -3,7 +3,7 @@ class Rental < ApplicationRecord
   belongs_to :car_category
   has_one :car_rental
   validates :start_date, :end_date, presence: true
-  enum status: {scheduled: 0, ongoing: 5}
+  enum status: { scheduled: 0, ongoing: 5 }
 
   before_create :generate_code
 

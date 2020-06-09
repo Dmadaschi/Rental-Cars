@@ -76,4 +76,41 @@ feature 'Admin begin rental' do
     expect(page).to have_content 'Carro Retirado: Fiat Mobi - Placa: ABC-1234 - Cor: Azul'
     expect(page).to have_content 'Valor da Diária: R$ 100,00'
   end
+
+  scenario 'from code search' do
+    user = create(:user)
+    car_category = create(:car_category)
+    fiat = create(:manufacturer, name: 'Fiat')
+    mobi = create(:car_model, name: 'Mobi', manufacturer: fiat,
+                              car_category: car_category)
+    car = create(:car, car_model: mobi, license_plate: 'ABC-123', color: 'Azul')
+    rental = create(:rental, car_category: car_category)
+
+    login_as(user, scope: :user)
+    visit rentals_path
+    fill_in 'Busca', with: rental.code
+    click_on 'Pesquisar'
+    click_on 'Iniciar'
+    select 'Fiat Mobi - Placa: ABC-123 - Cor: Azul', from: 'Carro'
+    click_on 'Confirmar'
+
+    rental.reload
+    car.reload
+    expect(rental.ongoing?).to be true
+    expect(car.rented?).to be true
+    expect(current_path).to eq rental_path(rental.id)
+    expect(page).to have_content 'Status Iniciada'
+    expect(page).to have_content 'Carro Retirado: Fiat Mobi - Placa: ABC-123 - Cor: Azul'
+  end
+
+  scenario 'with status other than scheduled' do
+    user = create(:user)
+    rental = create(:rental, status: 'ongoing')
+    car_rental = create(:car_rental, rental: rental)
+
+    login_as(user, scope: :user)
+    visit rental_path(rental)
+
+    expect(page).to_not have_content 'Iniciar'
+  end
 end

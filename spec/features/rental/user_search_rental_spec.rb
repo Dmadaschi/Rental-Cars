@@ -20,7 +20,7 @@ feature 'User search_rental' do
     user = create(:user)
     rental = create(:rental)
     another_rental = create(:rental)
-    
+
     login_as(user, scope: :user)
     visit rentals_path
     fill_in 'Busca',	with: "12345678910"

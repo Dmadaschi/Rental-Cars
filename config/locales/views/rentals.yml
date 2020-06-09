@@ -10,3 +10,5 @@ pt-BR:
     start:
       confirm: Confirmar inicio da locação
       category: Categoria
+    show:
+      start: Iniciar Locação

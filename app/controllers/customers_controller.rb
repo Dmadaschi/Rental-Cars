@@ -22,7 +22,8 @@ class CustomersController < ApplicationController
 
   def search
     search_query = params[:search]
-    @customers = Customer.where('name like ?',"%#{search_query}%").or(Customer.where(document: search_query))
+    @customers = Customer.where('name like ?',"%#{search_query}%")
+                   .or(Customer.where(document: search_query))
 
     flash[:notice] = "Resultado da busca por: #{search_query}"
     render :index
@@ -36,8 +37,8 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:name, 
-                                     :email, 
-                                     :document)
+    params.require(:customer).permit(:name, :email, :document,
+                                     :driver_license, :phone,
+                                     :birth_date)
   end
 end

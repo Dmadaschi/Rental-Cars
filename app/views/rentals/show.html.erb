@@ -25,4 +25,6 @@
   <% @rental.car_rental.add_ons.each do |add_on| %>
     <%= add_on.name%>
   <% end %>
+<% elsif @rental.scheduled?%>
+  <%= link_to t('.start'), start_rental_path(@rental)%>
 <% end %>

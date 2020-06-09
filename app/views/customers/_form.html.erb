@@ -2,12 +2,18 @@
 
 <%= form_with model: @customer do |f|%>
   <ul>
-  <li><%= f.label :name %>
-  <%= f.text_field :name %></li>
-  <li><%= f.label :document %>
-  <%= f.text_field :document %></li>
-  <li><%= f.label :email %>
-  <%= f.text_field :email %></li>
-  <li><%= f.submit t('.submit') %></li>
+    <li><%= f.label :name %>
+    <%= f.text_field :name %></li>
+    <li><%= f.label :document %>
+    <%= f.text_field :document %></li>
+    <li><%= f.label :email %>
+    <%= f.text_field :email %></li>
+    <li><%= f.label :driver_license %>
+    <%= f.text_field :driver_license %></li>
+    <li><%= f.label :phone %>
+    <%= f.text_field :phone %></li>
+    <li><%= f.label :birth_date %>
+    <%= f.text_field :birth_date %></li>
+    <li><%= f.submit t('.submit') %></li>
   </ul>
 <%end%>
