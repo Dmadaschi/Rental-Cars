@@ -1,6 +1,7 @@
 pt-BR:
   scheduled: Agendada
   ongoing: Iniciada
+  completed: Finalizada
   activerecord:
     models:
       rental: 

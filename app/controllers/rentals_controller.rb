@@ -37,6 +37,14 @@ class RentalsController < ApplicationController
     render :show
   end
 
+  def finish
+    @rental = Rental.find(params[:id])
+    @car_rental = @rental.car_rental
+    @car_rental.finish!
+
+    render :show
+  end
+
   private
 
   def rental_not_found

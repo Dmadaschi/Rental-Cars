@@ -22,12 +22,4 @@ RSpec.describe CarRental, type: :model do
       expect(car_rental.errors[:car]).to include('é obrigatório(a)')
     end
   end
-
-  context 'start_date' do
-    it 'must be today' do
-      rental = create(:car_rental)
-
-      expect(rental.start_date).to eq(Date.today)
-    end
-  end
 end

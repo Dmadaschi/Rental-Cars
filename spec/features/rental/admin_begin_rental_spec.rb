@@ -106,11 +106,34 @@ feature 'Admin begin rental' do
   scenario 'with status other than scheduled' do
     user = create(:user)
     rental = create(:rental, status: 'ongoing')
-    car_rental = create(:car_rental, rental: rental)
+    create(:car_rental, rental: rental)
 
     login_as(user, scope: :user)
     visit rental_path(rental)
 
     expect(page).to_not have_content 'Iniciar'
+  end
+
+  scenario 'with add ons' do
+    user = create(:user, email: 'test@test.com')
+    car_category = create(:car_category, daily_rate: 100, car_insurance: 10,
+                                         third_part_insurance: 10)
+    fiat = create(:manufacturer, name: 'Fiat')
+    mobi = create(:car_model, name: 'Mobi', manufacturer: fiat,
+                              car_category: car_category)
+    car = create(:car, car_model: mobi,
+                       license_plate: 'ABC-1234', color: 'Azul')
+    rental = create(:rental, car_category: car_category)
+    add_ons = create_list(:add_on, 2, daily_rate: 10)
+
+    login_as(user, scope: :user)
+    visit start_rental_path(rental.id)
+    select 'Fiat Mobi - Placa: ABC-1234 - Cor: Azul', from: 'Carro'
+    check add_ons.first.name
+    check add_ons.last.name
+    click_on 'Confirmar'
+
+    expect(page).to have_content 'Status Iniciada'
+    expect(page).to have_content 'Valor da Diária: R$ 120,00'
   end
 end

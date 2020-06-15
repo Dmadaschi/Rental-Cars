@@ -25,6 +25,18 @@
   <% @rental.car_rental.add_ons.each do |add_on| %>
     <%= add_on.name%>
   <% end %>
+  <h2><%=link_to 'Finalizar', finish_rental_path(@rental)%></h2>
 <% elsif @rental.scheduled?%>
   <%= link_to t('.start'), start_rental_path(@rental)%>
+<% elsif @rental.completed? %>
+  <dl>
+    <dt>Horário da Retirada:</dt>
+    <dd><%= l(@rental.car_rental.start_date, format: :custom) %></dd>
+    <dt>Horário da Entrega:</dt>
+    <dd><%= l(@rental.car_rental.end_date, format: :custom) %></dd>
+    <dt>Valor total:</dt>
+    <dd><%= number_to_currency @car_rental.total %></dd>
+    <dt>Carro Retirado:</dt>
+    <dd><%= @rental.car_rental.car.description %>
+  </dl>
 <% end %>
